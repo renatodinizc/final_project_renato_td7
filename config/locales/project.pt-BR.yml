@@ -9,9 +9,5 @@ pt-BR:
         description: 'Descrição'
         desired_skills: 'Habilidades preferenciais'
         top_hourly_wage: 'Máximo preço por hora'
-        project_deadline: 'Prazo de submissão final'
+        proposal_deadline: 'Prazo de submissão final'
         remote: 'Remoto'
-
-
-
-

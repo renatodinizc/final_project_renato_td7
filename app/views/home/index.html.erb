@@ -1,5 +1,7 @@
 <h1> Bem vindo ao FreelancingHUB </h1>
 
+<h4> <%= link_to 'Cadastrar novo projeto', new_project_path %> </h4>
+
 <% if @projects.empty? %>
     <p> Ainda não existem projetos cadastrados </p>
 <% else %>
