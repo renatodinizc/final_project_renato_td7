@@ -5,9 +5,9 @@ Descrição do projeto: <%= @project.description %>
 <br />
 O que procuramos no freela: <%= @project.desired_skills %>
 <br />
-Máximo preço por hora: <%= number_to_currency @project.top_hourly_wage, :locale => 'pt-BR' %>
+Máximo preço por hora: <%= number_to_currency @project.top_hourly_wage %>
 <br />
-Data limite para envio de propostas: <%= l @project.proposal_deadline, :locale => 'pt-BR' %>
+Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 <br />
 <% if @project.remote %>
     Trabalho remoto: sim
@@ -16,4 +16,8 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline, :locale =
 <% end %>
 </p>
 
+<%= link_to 'Editar informações do projeto', edit_project_path %>
+<br />
+<%= link_to 'Remover projeto', @project, method: :delete, data: { confirm: 'Você tem certeza?'} %>
+<br />
 <%= link_to 'Voltar', root_path %>

@@ -19,7 +19,7 @@ describe 'Contractor adds new project to website' do
     expect(page).to have_content('Data limite para envio de propostas: 10/12/2021')
     expect(page).to have_content('Trabalho remoto: sim')
   end
-  it 'and cannot left it blank' do
+  it 'and cannot left it with blank fields' do
     visit root_path
     click_on 'Cadastrar novo projeto'
     click_on 'Salvar Projeto'

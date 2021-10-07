@@ -6,12 +6,12 @@ describe 'Contractor visits homepage' do
     
     expect(page).to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
   end
-  it 'and sees message if there are no projects' do
+  it 'and sees message if there are no projects sucessfully' do
     visit root_path
     
     expect(page).to have_content('Ainda não existem projetos cadastrados')
   end
-  it 'and sees all avaiable projects' do
+  it 'and sees all avaiable projects successfully' do
     Project.create!(title: 'Website para grupo de estudos',
                     description: 'Grupo de estudos liberal de Salvador',
                     desired_skills: 'Orientado a prazos e qualidade',

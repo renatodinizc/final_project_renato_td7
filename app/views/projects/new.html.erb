@@ -1,34 +1,3 @@
 <h1> Página de cadastro de novo projeto </h1>
 
-<%= form_with model: @project do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= @project.errors.full_messages_for(:title)[0] %>
-  <br />
-  <br />
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= @project.errors.full_messages_for(:description)[0] %>
-  <br />
-  <br />
-  <%= f.label :desired_skills %>
-  <%= f.text_field :desired_skills %>
-  <%= @project.errors.full_messages_for(:desired_skills)[0] %>
-  <br />
-  <br />
-  <%= f.label :top_hourly_wage %>
-  <%= f.number_field :top_hourly_wage %>
-  <%= @project.errors.full_messages_for(:top_hourly_wage)[0] %>
-  <br />
-  <br />
-  <%= f.label :proposal_deadline %>
-  <%= f.date_field :proposal_deadline %>
-  <%= @project.errors.full_messages_for(:proposal_deadline)[0] %>
-  <br />
-  <br />
-  <%= f.label :remote %>
-  <%= f.check_box :remote %>
-  <br />
-  <br />
-  <%= f.submit %>
-<% end %>
+<%= render 'form', project: @project %>

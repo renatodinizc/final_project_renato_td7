@@ -19,7 +19,7 @@ describe 'Contractor sees project details' do
     expect(page).to have_content('Data limite para envio de propostas: 10/12/2021')
     expect(page).to have_content('Trabalho remoto: sim')
   end
-  it 'and comes back to see another project details' do
+  it 'and comes back to see another project details successfully' do
     Project.create!(title: 'Website para grupo de estudos',
       description: 'Grupo de estudos liberal de Salvador',
       desired_skills: 'Orientado a prazos e qualidade',
