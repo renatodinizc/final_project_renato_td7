@@ -1,25 +1,17 @@
 # README
 
+# final_project_renato_td7
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.0.2
 
-* System dependencies
+* System dependencies Mac OS Big Sur 11.6 ARMx86-64bits
 
-* Configuration
+* Database creation Sqlite3
 
-* Database creation
+* Database initialization Sqlite3
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# final_project_renato_td7
