@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      project: 'Projeto'
+    attributes:
+      project:
+        title: 'Título'
+        description: 'Descrição'
+        desired_skills: 'Habilidades preferenciais'
+        top_hourly_wage: 'Máximo preço por hora'
+        project_deadline: 'Prazo de submissão final'
+        remote: 'Remoto'
+
+
+
+

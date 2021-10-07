@@ -1,0 +1,19 @@
+<h1> <%= @project.title %> </h1>
+<p>
+<br />
+Descrição do projeto: <%= @project.description %>
+<br />
+O que procuramos no freela: <%= @project.desired_skills %>
+<br />
+Máximo preço por hora: <%= number_to_currency @project.top_hourly_wage, :locale => 'pt-BR' %>
+<br />
+Data limite para envio de propostas: <%= l @project.proposal_deadline, :locale => 'pt-BR' %>
+<br />
+<% if @project.remote %>
+    Trabalho remoto: sim
+<% else %>
+    Trabalho remoto: não
+<% end %>
+</p>
+
+<%= link_to 'Voltar', root_path %>
