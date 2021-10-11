@@ -15,10 +15,17 @@
     <p class="alert"><%= alert %></p>
     <% if contractor_signed_in? %>
       Você é um Contratante! Seu email é: <%= current_contractor.email %>
+      &emsp;
+      <%= link_to 'Ver meu perfil', contractor_path(current_contractor) %>
       <br />
       <%= link_to 'Sair da conta', destroy_contractor_session_path, method: :delete %>
+    
     <% elsif freelancer_signed_in? %>
-    Você é um Freelancer! Seu email é: <%= current_freelancer.email %>
+      Você é um Freelancer! Seu email é: <%= current_freelancer.email %>
+      &emsp;
+      <%= link_to 'Ver meu perfil', freelancer_path(current_freelancer) %>
+      <br />
+      <%= link_to 'Sair da conta', destroy_freelancer_session_path, method: :delete %>
     <% else %>
       <%= link_to 'Entrar como contratante', new_contractor_session_path %>
       <br />

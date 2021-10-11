@@ -3,9 +3,6 @@
 <% if contractor_signed_in? %>
     <%= link_to 'Cadastrar novo projeto', new_project_path %>
     <br />
-    <%= link_to 'Meus projetos', contractor_path(current_contractor) %>
-    <br />
-    <br />
 <% end %>
 
 <%= render 'projects/summary_list_of_projects', projects: @projects %>
