@@ -2,13 +2,16 @@ require 'rails_helper'
 
 describe 'Contractor deletes project' do
   it 'successfully' do
+    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
     Project.create!(title: 'Website para grupo de estudos',
       description: 'Grupo de estudos liberal de Salvador',
       desired_skills: 'Orientado a prazos e qualidade',
       top_hourly_wage: 10,
       proposal_deadline: '10/12/2021',
-      remote: true)
-
+      remote: true,
+      contractor: foo)
+    
+    login_as foo, scope: :contractor
     visit root_path
     click_on 'Website para grupo de estudos'
     click_on 'Remover projeto'

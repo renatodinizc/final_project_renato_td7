@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if contractor_signed_in? %>
+      Você é um Contratante! Seu email é: <%= current_contractor.email %>
+      <br />
+      <%= link_to 'Sair da conta', destroy_contractor_session_path, method: :delete %>
+    <% elsif freelancer_signed_in? %>
+    Você é um Freelancer! Seu email é: <%= current_freelancer.email %>
+    <% else %>
+      <%= link_to 'Entrar como contratante', new_contractor_session_path %>
+      <br />
+      <%= link_to 'Entrar como freelancer', new_freelancer_session_path %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

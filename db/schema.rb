@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_230220) do
+ActiveRecord::Schema.define(version: 2021_10_11_132016) do
+
+  create_table "contractors", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_contractors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_contractors_on_reset_password_token", unique: true
+  end
+
+  create_table "freelancers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_freelancers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_freelancers_on_reset_password_token", unique: true
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
@@ -21,6 +45,9 @@ ActiveRecord::Schema.define(version: 2021_10_06_230220) do
     t.boolean "remote"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "contractor_id", null: false
+    t.index ["contractor_id"], name: "index_projects_on_contractor_id"
   end
 
+  add_foreign_key "projects", "contractors"
 end

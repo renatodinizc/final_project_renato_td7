@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Contractor visits homepage' do
+describe 'Visitor visits homepage' do
   it 'successfully' do
     visit root_path
     
@@ -12,18 +12,21 @@ describe 'Contractor visits homepage' do
     expect(page).to have_content('Ainda não existem projetos cadastrados')
   end
   it 'and sees all avaiable projects successfully' do
+    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
     Project.create!(title: 'Website para grupo de estudos',
                     description: 'Grupo de estudos liberal de Salvador',
                     desired_skills: 'Orientado a prazos e qualidade',
                     top_hourly_wage: 10,
                     proposal_deadline: '10/12/2021',
-                    remote: true)
+                    remote: true,
+                    contractor: foo)
     Project.create!(title: 'Artes impressas para palestra',
                     description: 'Campeonato de debates na USP',
                     desired_skills: 'Pessoa criativa e dinâmica',
                     top_hourly_wage: 7,
                     proposal_deadline: '08/06/2021',
-                    remote: false)
+                    remote: false,
+                    contractor: foo)
     
     visit root_path
 

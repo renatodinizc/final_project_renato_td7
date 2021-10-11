@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Contractor adds new project to website' do
   it 'successfully' do
+    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+
+    login_as foo, scope: :contractor
     visit root_path
     click_on 'Cadastrar novo projeto'
     fill_in 'Título', with: 'Website para grupo de estudos'
@@ -20,6 +23,9 @@ describe 'Contractor adds new project to website' do
     expect(page).to have_content('Trabalho remoto: sim')
   end
   it 'and cannot left it with blank fields' do
+    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+
+    login_as foo, scope: :contractor
     visit root_path
     click_on 'Cadastrar novo projeto'
     click_on 'Salvar Projeto'

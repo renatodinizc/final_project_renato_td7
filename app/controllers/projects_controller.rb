@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     def create
       @project = Project.new(params.require(:project).permit(:title, :description, :desired_skills,
                             :top_hourly_wage, :proposal_deadline, :remote))
+      @project.contractor = current_contractor
       if @project.save
           redirect_to(project_path(@project))
       else
