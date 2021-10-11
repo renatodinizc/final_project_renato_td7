@@ -1,4 +1,4 @@
-describe 'rails_helper'
+require 'rails_helper'
 
 describe 'Freelancer logs' do
   context 'into platform ' do
