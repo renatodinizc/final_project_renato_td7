@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :contractors
 
   resources :contractors, only: [:show]
-  resources :freelancers, only: [:show]
+  resources :freelancers, only: [:show, :new]
 
   resources :projects, only: [:show, :new, :create, :edit, :update, :destroy]
 end

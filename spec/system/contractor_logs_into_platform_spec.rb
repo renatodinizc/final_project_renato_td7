@@ -23,7 +23,7 @@ describe 'Contractor logs' do
       visit root_path
       click_on 'Ver meu perfil'
 
-      expect(page).to have_css('h1', text: 'Perfil do Contractor foo@bar.com')
+      expect(page).to have_css('h1', text: 'Perfil do contratante foo@bar.com')
       expect(page).not_to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
     end
 

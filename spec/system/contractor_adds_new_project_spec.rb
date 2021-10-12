@@ -36,5 +36,17 @@ describe 'Contractor adds new project to website' do
     expect(page).to have_content("Máximo preço por hora não pode ficar em branco")
     expect(page).to have_content("Prazo de submissão final não pode ficar em branco")
   end
+  
+  it 'via own profile' do
+    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+
+    login_as foo, scope: :contractor
+    visit root_path
+    click_on 'Ver meu perfil'
+    click_on 'Cadastrar novo projeto'
+
+    expect(page).to have_content 'Página de cadastro de novo projeto'
+    expect(page).not_to have_link 'Cadastrar novo projeto'
+  end
 end
     

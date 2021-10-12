@@ -1,5 +1,5 @@
-<h1> Perfil do Contractor <%= @contractor.email %> </h1>>
+<h1> Perfil do contratante <%= @contractor.email %> </h1>
 
+<h4> <%= link_to 'Cadastrar novo projeto', new_project_path %> </h4>
 <h3> Meus projetos: </h3>
-<br />
 <%= render 'projects/summary_list_of_projects', projects: @projects %>
