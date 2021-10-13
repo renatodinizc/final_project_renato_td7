@@ -10,7 +10,7 @@ describe 'Contractor creates account at plataform' do
     fill_in 'Password confirmation', with: '123123'
     click_on 'Sign up'
 
-    expect(page).to have_content 'Você é um Contratante! Seu email é: foo@bar.com'
+    expect(page).to have_content 'Você está logado como contratante. Email: foo@bar.com'
     expect(page).not_to have_content 'Sign up'
   end
   it 'and confirms password correctly' do
@@ -22,7 +22,7 @@ describe 'Contractor creates account at plataform' do
     fill_in 'Password confirmation', with: '123456'
     click_on 'Sign up'
 
-    expect(page).not_to have_content 'Você é um Contratante! Seu email é: foo@bar.com'
+    expect(page).not_to have_content 'Você esta logado como contratante. Email: foo@bar.com'
     expect(page).to have_content 'Sign up'
   end
 end

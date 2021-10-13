@@ -1,0 +1,30 @@
+<h1> Formulário de cadastro de perfil pessoal </h1>
+
+<%= form_with model: @freelancer do |f| %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+  <%= @freelancer.errors.full_messages_for(:full_name)[0] %>
+  <br />
+  <%= f.label :social_name %>
+  <%= f.text_field :social_name %>
+   <%= @freelancer.errors.full_messages_for(:social_name)[0] %>
+  <br />
+  <%= f.label :birth_date %>
+  <%= f.date_field :birth_date %>
+  <%= @freelancer.errors.full_messages_for(:birth_date)[0] %>
+  <br />
+  <%= f.label :degree %>
+  <%= f.text_field :degree %>
+  <%= @freelancer.errors.full_messages_for(:degree)[0] %>
+  <br />
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= @freelancer.errors.full_messages_for(:description)[0] %>
+  <br />
+  <%= f.label :experience %>
+  <%= f.text_area :experience %>
+  <%= @freelancer.errors.full_messages_for(:experience)[0] %>
+  <br />
+  <br />
+  <%= f.submit %>
+<% end %>

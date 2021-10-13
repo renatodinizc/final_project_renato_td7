@@ -1,0 +1,19 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      freelancer: 'Freelancer'
+    attributes:
+      freelancer:
+        password: 'Senha'
+        password_confirmation: 'Confirmar senha'
+        full_name: 'Nome completo'
+        social_name: 'Nome social'
+        birth_date: 'Data de nascimento'
+        degree: 'Formação profissional'
+        experience: 'Experiência'
+        description: 'Descrição'
+        desired_skills: 'Habilidades preferenciais'
+        top_hourly_wage: 'Máximo preço por hora'
+        proposal_deadline: 'Prazo de submissão final'
+        remote: 'Remoto'

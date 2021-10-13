@@ -1,4 +1,17 @@
-<h1> Perfil do freelancer <%= @freelancer.email %> </h1>>
+<h1> Perfil do freelancer <%= @freelancer.email %> </h1>
+<p>
+Nome completo: <%= @freelancer.full_name %>
+<br />
+Nome social: <%= @freelancer.social_name %>
+<br />
+Data de nascimento: <%= l @freelancer.birth_date %>
+<br />
+Formação profissional: <%= @freelancer.degree %>
+<br />
+Descrição: <%= @freelancer.description %>
+<br />
+Experiência profissional: <%= @freelancer.experience %>
+</p>
 
 <h3> Meus projetos: </h3>
 
