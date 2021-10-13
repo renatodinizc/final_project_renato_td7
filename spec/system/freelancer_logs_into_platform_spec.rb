@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Freelancer with all required information logs' do
+describe 'Freelancer logs' do
   context 'into platform ' do
     it 'successfully' do
       foo = Freelancer.create!(email: 'foo@bar.com', password: '123123')
@@ -19,7 +19,9 @@ describe 'Freelancer with all required information logs' do
 
   context 'into own profile' do
     it 'successfully' do
-      foo = Freelancer.create!(email: 'foo@bar.com', password: '123123')
+      foo = Freelancer.create!(email: 'foo@bar.com', password: '123123', full_name: 'Foo Bar',
+                              social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
+                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
 
       login_as foo, scope: :freelancer
       visit root_path

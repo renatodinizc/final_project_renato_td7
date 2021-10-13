@@ -23,7 +23,7 @@
     <% elsif freelancer_signed_in? %>
       <b> Você está logado como freelancer. </b> Email: <%= current_freelancer.email %>
       &emsp;
-      <% if current_freelancer.valid? %>
+      <% if current_freelancer.valid?(:new_profile) %>
         <%= link_to 'Ver meu perfil', freelancer_path(current_freelancer) %>
         &emsp;
       <% end %>
