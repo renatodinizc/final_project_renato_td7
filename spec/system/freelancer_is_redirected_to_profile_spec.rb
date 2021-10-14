@@ -11,7 +11,7 @@ describe 'Freelancer is redirected to profile form when logs in' do
     click_on 'Log in'
 
     expect(page).to have_content('Login efetuado com sucesso!')
-    expect(page).to have_css('b', text: 'Você está logado como freelancer')
+    expect(page).to have_content('Você está logado como freelancer')
     expect(page).to have_css('h1', text: 'Formulário de cadastro de perfil pessoal')
     expect(page).to have_content('Nome completo')
     expect(page).to have_button 'Salvar Freelancer'

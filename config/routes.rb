@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :contractors, only: [:show]
   resources :freelancers, only: [:show, :edit, :update]
 
-  resources :projects, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :projects, only: [:show, :new, :create, :edit, :update, :destroy] do
+    get 'search', on: :collection
+  end
 end

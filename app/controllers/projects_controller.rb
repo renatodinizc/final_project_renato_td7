@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  
     def show
       @project = Project.find(params[:id])
     end
@@ -36,5 +37,14 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
       @project.destroy
       redirect_to root_path
+    end
+
+    def search
+      # Vulnerable to SQL injection
+      # Investigar melhor o having caso dê tempo
+      # https://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-having 
+      
+      @projects = Project.where("title LIKE ?", "%#{get_search_input}%").
+                  or(Project.where("description LIKE ?", "%#{get_search_input}%"))
     end
 end
