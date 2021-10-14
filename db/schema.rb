@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_000854) do
+ActiveRecord::Schema.define(version: 2021_10_14_212242) do
 
   create_table "contractors", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -55,5 +55,17 @@ ActiveRecord::Schema.define(version: 2021_10_12_000854) do
     t.index ["contractor_id"], name: "index_projects_on_contractor_id"
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.string "proposal_description"
+    t.decimal "hourly_wage"
+    t.integer "weekly_hours"
+    t.date "expected_conclusion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "project_id", null: false
+    t.index ["project_id"], name: "index_proposals_on_project_id"
+  end
+
   add_foreign_key "projects", "contractors"
+  add_foreign_key "proposals", "projects"
 end

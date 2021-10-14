@@ -4,6 +4,8 @@ class Freelancer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :proposals
+
   validates :full_name, :social_name, :birth_date, :degree, :description, :experience, presence: true, on: :profile_completion
 
 end

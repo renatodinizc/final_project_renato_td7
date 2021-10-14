@@ -4,16 +4,15 @@ class ApplicationController < ActionController::Base
     params[:search].strip
   end
 
-  # Investigar problema do uso do current_freelancer.valid?(:profile_completion) no método caso dê tempo
+  # Solução refatorada. Usuário ja é direcionado para root_path com perfil completo, mas ainda passa pela tela repetida
+  # de login caso não esteja com cadastro completo. É necessário rodar um F5
   def after_sign_in_path_for(resource)
-    if freelancer_signed_in?
-      edit_freelancer_path current_freelancer
-    elsif contractor_signed_in?
-    root_path
+    return root_path if resource.is_a? Contractor
+    if resource.valid?(:profile_completion)
+      root_path
+    else
+      edit_freelancer_path resource
     end
   end
-
-  
-  
 
 end

@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
       # Vulnerable to SQL injection
       # Investigar melhor o having caso dê tempo
       # https://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-having 
-      
+
       @projects = Project.where("title LIKE ?", "%#{get_search_input}%").
                   or(Project.where("description LIKE ?", "%#{get_search_input}%"))
     end

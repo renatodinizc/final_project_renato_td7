@@ -21,6 +21,21 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
     <br />
     <%= link_to 'Remover projeto', @project, method: :delete, data: { confirm: 'Você tem certeza?'} %>
     <br />
+<% elsif freelancer_signed_in? %>
+    <%= form_with model: @proposal, do |f| %>
+        <%= f.label :proposal_description, 'Justificativa' %>
+        <%= f.text_field :proposal_description %>
+        <br />
+        <%= f.label :hourly_wage, 'Valor/hora' %>
+        <%= f.number_field :hourly_wage %>
+        <br />
+        <%= f.label :weekly_hours, 'Horas semanais' %>
+        <%= f.number_field :weekly_hours %>
+        <br />
+        <%= f.label :expected_conclusion, 'Conclusão esperada' %>
+        <%= f.date_field :expected_conclusion %>
+        <%= f.submit 'Enviar proposta' %>
+    <% end %>
 <% end %>
 
 <%= link_to 'Voltar', root_path %>

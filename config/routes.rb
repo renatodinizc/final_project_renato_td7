@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:show, :new, :create, :edit, :update, :destroy] do
     get 'search', on: :collection
+    resources :proposals, shallow: true
   end
 end
