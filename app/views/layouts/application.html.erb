@@ -14,24 +14,28 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <% if contractor_signed_in? %>
-      Você está logado como contratante. Email: <%= current_contractor.email %>
+      Você está logado como contratante || Email: <%= current_contractor.email %>
       &emsp;
       <%= link_to 'Ver meu perfil', contractor_path(current_contractor) %>
       &emsp;
       <%= link_to 'Sair da conta', destroy_contractor_session_path, method: :delete %>
+    <% elsif freelancer_signed_in? && current_freelancer.invalid?(:profile_completion) %>
+      <%= link_to 'Sair da conta', destroy_freelancer_session_path, method: :delete %>
     <% elsif freelancer_signed_in? %>
-      Você está logado como freelancer. Email: <%= current_freelancer.email %>
-      &emsp;
+      Você está logado como freelancer || Email: <%= current_freelancer.email %>
+      ||
+      <%= link_to 'Ver meu perfil', freelancer_path(current_freelancer) %>
+      ||
+      <%= link_to 'Meus projetos', my_projects_freelancers_path %>
+      || 
+      <%= link_to 'Sair da conta', destroy_freelancer_session_path, method: :delete %>
       <% if current_freelancer.valid?(:profile_completion) %>
         <%= form_with url: search_projects_path, method: :get do |f| %>
         <%= f.label :search, 'Procurar projeto' %>
         <%= f.text_field :search %>
         <%= f.submit 'Procurar projeto' %>
       <% end %>
-      <%= link_to 'Ver meu perfil', freelancer_path(current_freelancer) %>
-      &emsp;
     <% end %>
-      <%= link_to 'Sair da conta', destroy_freelancer_session_path, method: :delete %>
     <% else %>
       Você ainda não está logado.
       &emsp;

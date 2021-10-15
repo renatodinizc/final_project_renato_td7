@@ -1,0 +1,9 @@
+<h3> Meus projetos:</h3>
+
+<% @proposals.each do |proposal| %>
+  <%= link_to proposal.project.title, project_path(proposal.project) %>
+  <br />
+  Descrição: <%= proposal.project.description %>
+  <br />
+  <br />
+<% end %>

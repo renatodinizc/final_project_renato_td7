@@ -17,5 +17,12 @@ class FreelancersController < ApplicationController
       render :edit
     end
   end
+
+  def my_projects
+    
+    @proposals = Proposal.where(freelancer: current_freelancer)
+    
+    #@projects = Project.where(freelancer: current_freelancer)
+  end
   
 end
