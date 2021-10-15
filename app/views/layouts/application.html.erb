@@ -20,6 +20,7 @@
       &emsp;
       <%= link_to 'Sair da conta', destroy_contractor_session_path, method: :delete %>
     <% elsif freelancer_signed_in? && current_freelancer.invalid?(:profile_completion) %>
+      Você está logado como freelancer || Email: <%= current_freelancer.email %>
       <%= link_to 'Sair da conta', destroy_freelancer_session_path, method: :delete %>
     <% elsif freelancer_signed_in? %>
       Você está logado como freelancer || Email: <%= current_freelancer.email %>

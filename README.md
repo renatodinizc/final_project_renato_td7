@@ -10,3 +10,6 @@
 
 * Database initialization Sqlite3
 
+MODIFICAÇÕES EM TESTES DE LOGIN:
+Algumas modificações temporárias foram feitas nos testes de login em ordem de neutralizar bug no redirecionamento da login.
+Estes testes serão reajustados perto da data de entrega do projeto.

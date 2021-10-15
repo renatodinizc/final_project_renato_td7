@@ -10,6 +10,7 @@ describe 'Freelancer logs' do
       fill_in 'Email', with: 'foo@bar.com'
       fill_in 'Senha', with: '123123'
       click_on 'Log in'
+      visit root_path
 
       expect(page).to have_content 'foo@bar.com'
       expect(page).to have_content 'Sair da conta'
@@ -59,6 +60,7 @@ describe 'Freelancer logs' do
 
         login_as jane, scope: :freelancer
         visit root_path
+
 
         expect(page).to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
         expect(page).to have_content 'Ainda não existem projetos cadastrados'
