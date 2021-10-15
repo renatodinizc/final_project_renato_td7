@@ -2,6 +2,8 @@ class ProjectsController < ApplicationController
   
     def show
       @project = Project.find(params[:id])
+      @proposal = Proposal.new
+      @proposals = Proposal.where(project: Project.find(params[:id]))
     end
 
     def new

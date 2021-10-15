@@ -24,8 +24,11 @@ describe 'Freelancer makes proposal to project' do
     click_on 'Enviar proposta'
 
     expect(page).to have_content 'Plataforma de desafios de programação'
-    expect(page).to have_content 'Proposta enviada com sucesso!'
-    expect(page).to have_content 'Suas propostas enviadas'
-    expect(page).to have_content 'Status da proposta: Pendente'
+    expect(page).to have_content 'Suas propostas:'
+    expect(page).to have_content 'Justificativa: Fui aluno da turma 7 do TreinaDev e quero contribuir com o projeto'
+    expect(page).to have_content 'Valor/hora: R$ 14,00'
+    expect(page).to have_content 'Carga horária semanal: 20 horas'
+    expect(page).to have_content 'Conclusão esperada: 30/01/2022'
+    #expect(page).to have_content 'Status da proposta: Pendente'
   end
 end
