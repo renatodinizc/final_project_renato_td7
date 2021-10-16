@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_114819) do
+ActiveRecord::Schema.define(version: 2021_10_16_114859) do
 
   create_table "contractors", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 2021_10_15_114819) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_contractors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_contractors_on_reset_password_token", unique: true
+  end
+
+  create_table "freelancer_expertises", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "freelancers", force: :cascade do |t|
@@ -38,7 +44,9 @@ ActiveRecord::Schema.define(version: 2021_10_15_114819) do
     t.string "degree"
     t.string "description"
     t.string "experience"
+    t.integer "freelancer_expertise_id"
     t.index ["email"], name: "index_freelancers_on_email", unique: true
+    t.index ["freelancer_expertise_id"], name: "index_freelancers_on_freelancer_expertise_id"
     t.index ["reset_password_token"], name: "index_freelancers_on_reset_password_token", unique: true
   end
 
@@ -68,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_114819) do
     t.index ["project_id"], name: "index_proposals_on_project_id"
   end
 
+  add_foreign_key "freelancers", "freelancer_expertises"
   add_foreign_key "projects", "contractors"
   add_foreign_key "proposals", "freelancers"
   add_foreign_key "proposals", "projects"

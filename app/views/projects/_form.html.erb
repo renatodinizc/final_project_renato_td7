@@ -27,6 +27,10 @@
   <%= f.label :remote %>
   <%= f.check_box :remote %>
   <br />
+  <%= f.label :freelancer_expertise_id %>
+  <%= f.collection_select :freelancer_expertise_id, FreelancerExpertise.all, :id, :title %>
+  <%= project.errors.full_messages_for(:freelancer_expertise)[0] %>
+  <br />
   <br />
   <%= f.submit %>
 <% end %>

@@ -5,6 +5,8 @@ Descrição do projeto: <%= @project.description %>
 <br />
 O que procuramos no freela: <%= @project.desired_skills %>
 <br />
+Área de atuação requerida: <%= @project.freelancer_expertise.title %>
+<br />
 Máximo preço por hora: <%= number_to_currency @project.top_hourly_wage %>
 <br />
 Data limite para envio de propostas: <%= l @project.proposal_deadline %>
