@@ -17,33 +17,38 @@ describe 'Freelancer logs' do
       expect(page).not_to have_content 'Entrar como freelancer'
     end
 
-    it 'and sees all avaiable projects' do
+    it 'and sees all avaiable projects successfully' do
       jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
                               social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
                               description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
       foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
       bar = Contractor.create!(email: 'bar@foo.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      designer = FreelancerExpertise.create!(title: 'Designer')
       Project.create!(title: 'Website para grupo de estudos',
                       description: 'Grupo de estudos liberal de Salvador',
                       desired_skills: 'Orientado a prazos e qualidade',
                       top_hourly_wage: 10,
                       proposal_deadline: '10/12/2021',
                       remote: true,
-                      contractor: foo)
+                      contractor: foo,
+                      freelancer_expertise: webdev)
       Project.create!(title: 'Artes impressas para palestra',
                       description: 'Campeonato de debates na USP',
                       desired_skills: 'Pessoa criativa e dinâmica',
                       top_hourly_wage: 7,
                       proposal_deadline: '08/06/2021',
                       remote: false,
-                      contractor: foo)
+                      contractor: foo,
+                      freelancer_expertise: designer)
       Project.create!(title: 'Plataforma de desafios de programação',
                       description: 'Pessoal da Campus Code',
                       desired_skills: 'Esforçada, obstinada e cuidadosa',
                       top_hourly_wage: 37,
                       proposal_deadline: '22/01/2022',
                       remote: true,
-                      contractor: bar) 
+                      contractor: bar,
+                      freelancer_expertise: webdev) 
 
       login_as jane, scope: :freelancer
       visit root_path
@@ -72,27 +77,32 @@ describe 'Freelancer logs' do
                               description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
       foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
       bar = Contractor.create!(email: 'bar@foo.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      designer = FreelancerExpertise.create!(title: 'Designer')
       Project.create!(title: 'Website para grupo de estudos',
                       description: 'Grupo de estudos liberal de Salvador',
                       desired_skills: 'Orientado a prazos e qualidade',
                       top_hourly_wage: 10,
                       proposal_deadline: '10/12/2021',
                       remote: true,
-                      contractor: foo)
+                      contractor: foo,
+                      freelancer_expertise: webdev)
       Project.create!(title: 'Artes impressas para palestra',
                       description: 'Campeonato de debates na USP',
                       desired_skills: 'Pessoa criativa e dinâmica',
                       top_hourly_wage: 7,
                       proposal_deadline: '08/06/2021',
                       remote: false,
-                      contractor: foo)
+                      contractor: foo,
+                      freelancer_expertise: designer)
       Project.create!(title: 'Plataforma de desafios de programação',
                       description: 'Pessoal da Campus Code',
                       desired_skills: 'Esforçada, obstinada e cuidadosa',
                       top_hourly_wage: 37,
                       proposal_deadline: '22/01/2022',
                       remote: true,
-                      contractor: bar) 
+                      contractor: bar,
+                      freelancer_expertise: webdev) 
 
       login_as jane, scope: :freelancer
       visit root_path
@@ -112,27 +122,32 @@ describe 'Freelancer logs' do
                               description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
       foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
       bar = Contractor.create!(email: 'bar@foo.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      designer = FreelancerExpertise.create!(title: 'Designer')
       Project.create!(title: 'Website para grupo de estudos',
                       description: 'Grupo de estudos liberal de Salvador',
                       desired_skills: 'Orientado a prazos e qualidade',
                       top_hourly_wage: 10,
                       proposal_deadline: '10/12/2021',
                       remote: true,
-                      contractor: foo)
+                      contractor: foo,
+                      freelancer_expertise: webdev)
       Project.create!(title: 'Artes impressas para palestra',
                       description: 'Campeonato de debates na USP',
                       desired_skills: 'Pessoa criativa e dinâmica',
                       top_hourly_wage: 7,
                       proposal_deadline: '08/06/2021',
                       remote: false,
-                      contractor: foo)
+                      contractor: foo,
+                      freelancer_expertise: designer)
       Project.create!(title: 'Plataforma de desafios de programação',
                       description: 'Pessoal da Campus Code',
                       desired_skills: 'Esforçada, obstinada e cuidadosa',
                       top_hourly_wage: 37,
                       proposal_deadline: '22/01/2022',
                       remote: true,
-                      contractor: bar) 
+                      contractor: bar,
+                      freelancer_expertise: webdev) 
 
       login_as jane, scope: :freelancer
       visit root_path

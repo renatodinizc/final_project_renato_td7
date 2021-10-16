@@ -12,6 +12,7 @@ describe "Freelancer cannot" do
   
   it 'edit project successfuly' do
     foo = Freelancer.create!(email: 'foo@bar.com', password: '123123')
+    webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
     foobar = Contractor.create!(email: 'foobar@bar.com', password: '123123')
     Project.create!(title: 'Website para grupo de estudos',
                     description: 'Grupo de estudos liberal de Salvador',
@@ -19,7 +20,8 @@ describe "Freelancer cannot" do
                     top_hourly_wage: 10,
                     proposal_deadline: '10/12/2021',
                     remote: true,
-                    contractor: foobar)
+                    contractor: foobar,
+                    freelancer_expertise: webdev)
 
     login_as foo, scope: :freelancer
     visit root_path
@@ -31,13 +33,15 @@ describe "Freelancer cannot" do
   it 'delete project successfuly' do
     foo = Freelancer.create!(email: 'foo@bar.com', password: '123123')
     foobar = Contractor.create!(email: 'foobar@bar.com', password: '123123')
+    webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
     Project.create!(title: 'Website para grupo de estudos',
                     description: 'Grupo de estudos liberal de Salvador',
                     desired_skills: 'Orientado a prazos e qualidade',
                     top_hourly_wage: 10,
                     proposal_deadline: '10/12/2021',
                     remote: true,
-                    contractor: foobar)
+                    contractor: foobar,
+                    freelancer_expertise: webdev)
 
     login_as foo, scope: :freelancer
     visit root_path

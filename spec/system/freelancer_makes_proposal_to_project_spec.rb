@@ -6,6 +6,7 @@ describe 'Freelancer makes proposal to project' do
       social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
       description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
     peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
+
     Project.create!(title: 'Plataforma de desafios de programação',
       description: 'Pessoal da Campus Code',
       desired_skills: 'Esforçada, obstinada e cuidadosa',
