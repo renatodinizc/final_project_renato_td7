@@ -1,6 +1,10 @@
 class FreelancersController < ApplicationController
   def show
-    @freelancer = current_freelancer
+    if freelancer_signed_in?
+      @freelancer = current_freelancer
+    elsif contractor_signed_in?
+      @freelancer = Freelancer.find(params[:id])
+    end
   end
 
   def edit

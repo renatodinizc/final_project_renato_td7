@@ -3,6 +3,7 @@
 <% if contractor_signed_in? %>
     <%= link_to 'Cadastrar novo projeto', new_project_path %>
     <br />
+    <br />
 <% end %>
 
 <%= render 'projects/summary_list_of_projects', projects: @projects %>
