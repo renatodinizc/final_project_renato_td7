@@ -17,3 +17,5 @@ pt-BR:
         top_hourly_wage: 'Máximo preço por hora'
         proposal_deadline: 'Prazo de submissão final'
         remote: 'Remoto'
+        freelancer_expertise: 'Área de atuação'
+        freelancer_expertise_id: 'Área de atuação'

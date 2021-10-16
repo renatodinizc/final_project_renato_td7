@@ -1,0 +1,13 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      proposal: 'Proposta'
+    attributes:
+      proposal:
+        proposal_description: 'Descrição da proposta'
+        hourly_wage: 'Valor/hora'
+        weekly_hours: 'Horas semanais'
+        expected_conclusion: 'Conclusão esperada'
+          
+

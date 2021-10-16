@@ -5,8 +5,10 @@ class ProposalsController < ApplicationController
                             :hourly_wage, :weekly_hours, :expected_conclusion))
     @proposal.project = Project.find(params[:project_id])
     @proposal.freelancer = current_freelancer
-    @proposal.save!
-    
+    @proposal.save
+
+    flash[:errors] = "Todos campos devem ser preenchidos"
     redirect_to project_path @proposal.project
+
   end
 end

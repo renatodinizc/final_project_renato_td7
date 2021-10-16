@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      freelancer_expertise: 'Área de atuação'
+    attributes:
+      freelancer_expertise:
+        title: 'Área de atuação'
+          

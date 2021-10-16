@@ -14,7 +14,7 @@ class FreelancersController < ApplicationController
   def update
     @freelancer = current_freelancer
     @freelancer.update(params.require(:freelancer).permit(:full_name, :social_name,
-                        :birth_date, :degree, :description, :experience))
+                        :birth_date, :degree, :description, :experience, :freelancer_expertise_id))
     if @freelancer.valid?(:profile_completion)
       redirect_to freelancer_path(@freelancer)
     else
@@ -23,10 +23,7 @@ class FreelancersController < ApplicationController
   end
 
   def my_projects
-    
     @proposals = Proposal.where(freelancer: current_freelancer)
-    
-    #@projects = Project.where(freelancer: current_freelancer)
   end
   
 end

@@ -13,6 +13,10 @@
   <%= f.date_field :birth_date %>
   <%= @freelancer.errors.full_messages_for(:birth_date)[0] %>
   <br />
+  <%= f.label :freelancer_expertise_id %>
+  <%= f.collection_select :freelancer_expertise_id, FreelancerExpertise.all, :id, :title %>
+  <%= @freelancer.errors.full_messages_for(:freelancer_expertise_id)[0] %>
+  <br />
   <%= f.label :degree %>
   <%= f.text_field :degree %>
   <%= @freelancer.errors.full_messages_for(:degree)[0] %>

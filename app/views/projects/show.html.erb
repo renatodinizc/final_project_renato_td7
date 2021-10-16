@@ -43,18 +43,21 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 <% elsif freelancer_signed_in? %>
     <h3> Adicione sua proposta de trabalho! </h3>
     <%= form_with model: @proposal, url: project_proposals_path(@project) do |f| %>
-        <%= f.label :proposal_description, 'Justificativa' %>
+        <p> <%= flash[:errors] %> </p>
+    
+        <%= f.label :proposal_description %>
         <%= f.text_field :proposal_description %>
         <br />
-        <%= f.label :hourly_wage, 'Valor/hora' %>
+        <%= f.label :hourly_wage %>
         <%= f.number_field :hourly_wage %>
         <br />
-        <%= f.label :weekly_hours, 'Horas semanais' %>
+        <%= f.label :weekly_hours %>
         <%= f.number_field :weekly_hours %>
         <br />
-        <%= f.label :expected_conclusion, 'Conclusão esperada' %>
+        <%= f.label :expected_conclusion %>
         <%= f.date_field :expected_conclusion %>
-        <%= f.submit 'Enviar proposta'%>
+        <%= f.submit 'Enviar proposta' %>
+
     <% end %>
 
     <h4> Suas propostas: </h4>
