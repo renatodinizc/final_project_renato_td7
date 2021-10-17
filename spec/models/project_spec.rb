@@ -30,4 +30,15 @@ describe Project do
       expect(object.errors.full_messages_for(:freelancer_expertise)).to include 'Área de atuação é obrigatório(a)'
     end
   end
+
+  context 'custom validation on' do
+    it 'top hourly wage successfully' do
+      object = Project.new(top_hourly_wage: -5)
+      
+      object.valid?
+
+      expect(object.errors.full_messages_for(:top_hourly_wage)).to include 'Máximo preço por hora não pode ser negativo'
+      
+    end
+  end
 end

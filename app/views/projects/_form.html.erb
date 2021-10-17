@@ -27,8 +27,9 @@
   <%= f.label :remote %>
   <%= f.check_box :remote %>
   <br />
+  <!-- <p> Mantenha pressionado o botão Ctrl (Windows) ou Command (MacOS) para selecionar mais de uma opção. </p> -->
   <%= f.label :freelancer_expertise_id %>
-  <%= f.collection_select :freelancer_expertise_id, FreelancerExpertise.all, :id, :title %>
+  <%= f.collection_select(:freelancer_expertise_id, FreelancerExpertise.all, :id, :title, {:prompt => 'Selecionar opção'}) %>
   <%= project.errors.full_messages_for(:freelancer_expertise)[0] %>
   <br />
   <br />

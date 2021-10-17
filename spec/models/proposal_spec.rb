@@ -30,6 +30,27 @@ describe Proposal do
 
       expect(proposal.errors.full_messages_for(:expected_conclusion)).to include 'Conclusão esperada não pode ficar em branco'
     end
+
+    it "custom attribute 'check for top wage' successfully" do
+      peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      spongebob = Freelancer.create!(email: 'spongebob@hub.com', password: '123123', full_name: 'Sponge Bob SquarePants',
+                                    social_name: 'Sponge Bob', birth_date: '14/07/1986', degree: 'Cooking',
+                                    description: 'Já trabalhei em águas internacionais, lido bem sob pressão e guardo bem os segredos',
+                                    experience: 'Já trabalhei como chef no Siri Cascudo', freelancer_expertise: webdev)
+      desafios = Project.create!(title: 'Plataforma de desafios de programação',
+                                description: 'Pessoal da Campus Code',
+                                desired_skills: 'Esforçada, obstinada e cuidadosa',
+                                top_hourly_wage: 37,
+                                proposal_deadline: '22/01/2022',
+                                remote: true,
+                                contractor: peter,
+                                freelancer_expertise: webdev)
+      proposal = Proposal.new(hourly_wage: 40, project: desafios)
+
+      proposal.save!
+
+      expect(proposal.errors.full_messages_for(:hourly_wage)).to include 'Valor/hora não pode exceder o máximo preço por hora do projeto'
+    end
   end
-  
 end
