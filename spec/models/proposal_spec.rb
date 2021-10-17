@@ -7,7 +7,7 @@ describe Proposal do
 
       proposal.valid?
 
-      expect(proposal.errors.full_messages_for(:proposal_description)).to include 'Descrição da proposta não pode ficar em branco'
+      expect(proposal.errors.full_messages_for(:proposal_description)).to include 'Justificativa não pode ficar em branco'
     end
     it 'the hourly wage attribute successfully' do
       proposal = Proposal.new
@@ -53,6 +53,27 @@ describe Proposal do
       proposal.valid?
 
       expect(proposal.errors.full_messages_for(:hourly_wage)).to include 'Valor/hora não pode exceder o máximo preço por hora do projeto'
+    end
+    it 'approval status when proposal created' do
+      peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')        
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
+                                social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
+                                description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+                                freelancer_expertise: webdev)                         
+      website = Project.create!(title: 'Website para grupo de estudos',
+                                description: 'Grupo de estudos liberal de Salvador',
+                                desired_skills: 'Orientado a prazos e qualidade',
+                                top_hourly_wage: 20,
+                                proposal_deadline: '10/12/2021',
+                                remote: true,
+                                contractor: peter,
+                                freelancer_expertise: webdev)
+      proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
+                                  hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
+                                  project: website, freelancer: jane)
+
+      expect(proposal.status).to eq 'pending_approval'
     end
   end
 end

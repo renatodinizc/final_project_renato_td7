@@ -72,13 +72,14 @@ describe 'Freelancer logs' do
     end
     
     it 'and searches for specific project by its title' do
-      jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
-                              social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
-                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
       foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
       bar = Contractor.create!(email: 'bar@foo.com', password: '123123')
       webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
       designer = FreelancerExpertise.create!(title: 'Designer')
+      jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
+                              social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
+                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+                              freelancer_expertise: webdev)
       Project.create!(title: 'Website para grupo de estudos',
                       description: 'Grupo de estudos liberal de Salvador',
                       desired_skills: 'Orientado a prazos e qualidade',
@@ -117,13 +118,68 @@ describe 'Freelancer logs' do
     end
 
     it 'and searches for specific project by its description' do
-      jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
+       jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
                               social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
                               description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
       foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
       bar = Contractor.create!(email: 'bar@foo.com', password: '123123')
       webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
       designer = FreelancerExpertise.create!(title: 'Designer')
+      Project.create!(title: 'Website para grupo de estudos',
+                      description: 'Grupo de estudos liberal de Salvador',
+                      desired_skills: 'Orientado a prazos e qualidade',
+                      top_hourly_wage: 10,
+                      proposal_deadline: '10/12/2021',
+                      remote: true,
+                      contractor: foo,
+                      freelancer_expertise: webdev)
+      Project.create!(title: 'Artes impressas para palestra',
+                      description: 'Campeonato de debates na USP',
+                      desired_skills: 'Pessoa criativa e dinâmica',
+                      top_hourly_wage: 7,
+                      proposal_deadline: '08/06/2021',
+                      remote: false,
+                      contractor: foo,
+                      freelancer_expertise: designer)
+      Project.create!(title: 'Plataforma de desafios de programação',
+                      description: 'Pessoal da Campus Code',
+                      desired_skills: 'Esforçada, obstinada e cuidadosa',
+                      top_hourly_wage: 37,
+                      proposal_deadline: '22/01/2022',
+                      remote: true,
+                      contractor: bar,
+                      freelancer_expertise: webdev) 
+
+      login_as jane, scope: :freelancer
+      visit root_path
+
+      expect(page).to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
+      expect(page).to have_link 'Website para grupo de estudos'
+      expect(page).to have_link 'Artes impressas para palestra'
+      expect(page).to have_link 'Plataforma de desafios de programação'
+    end
+    it 'and sees message if there are no projects avaiable' do
+      jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
+        social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
+        description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
+
+        login_as jane, scope: :freelancer
+        visit root_path
+
+
+        expect(page).to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
+        expect(page).to have_content 'Ainda não existem projetos cadastrados'
+    end
+    
+    it 'and searches for specific project by its title' do
+      foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+      bar = Contractor.create!(email: 'bar@foo.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      designer = FreelancerExpertise.create!(title: 'Designer')
+      jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
+                              social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
+                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+                              freelancer_expertise: webdev)
       Project.create!(title: 'Website para grupo de estudos',
                       description: 'Grupo de estudos liberal de Salvador',
                       desired_skills: 'Orientado a prazos e qualidade',
@@ -166,9 +222,11 @@ describe 'Freelancer logs' do
 
   context 'into own profile' do
     it 'successfully' do
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
       foo = Freelancer.create!(email: 'foo@bar.com', password: '123123', full_name: 'Foo Bar',
                               social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
-                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
+                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+                              freelancer_expertise: webdev)
 
       login_as foo, scope: :freelancer
       visit root_path
@@ -179,12 +237,12 @@ describe 'Freelancer logs' do
     end
 
     it 'and edits own information' do
-      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
       ux = FreelancerExpertise.create!(title: 'UX')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
       foo = Freelancer.create!(email: 'foo@bar.com', password: '123123', full_name: 'Foo Bar',
-        social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
-        description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
-        freelancer_expertise: webdev)
+                              social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
+                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+                              freelancer_expertise: webdev)
 
       login_as foo, scope: :freelancer
       visit root_path
@@ -210,9 +268,11 @@ describe 'Freelancer logs' do
     end
 
     it 'and comes back to homepage successfully' do
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
       foo = Freelancer.create!(email: 'foo@bar.com', password: '123123', full_name: 'Foo Bar',
-        social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
-        description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos')
+                              social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
+                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+                              freelancer_expertise: webdev)
 
       login_as foo, scope: :freelancer
       visit root_path

@@ -40,6 +40,8 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
         <br />
         Valor/hora: <%= number_to_currency(proposal.hourly_wage) %>
         <br />
+        Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}") %>
+        <br />
         <br />
     <% end %>
 
@@ -76,6 +78,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                 <br />
                 Conclusão esperada: <%= l proposal.expected_conclusion %>
                 <br />
+                Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}") %>
                 <br />
             <% end %>
         <% end %>
