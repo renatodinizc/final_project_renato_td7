@@ -18,7 +18,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 <% end %>
 </p>
 
-<% if contractor_signed_in? %>
+<% if contractor_signed_in? && current_contractor == @project.contractor %>
     <%= link_to 'Editar informações do projeto', edit_project_path %>
     <br />
     <%= link_to 'Remover projeto', @project, method: :delete, data: { confirm: 'Você tem certeza?'} %>
@@ -62,16 +62,23 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 
     <h4> Suas propostas: </h4>
     <% @proposals.each do |proposal| %>
-        Justificativa: <%= proposal.proposal_description %>
-        <br />
-        Valor/hora: <%= number_to_currency proposal.hourly_wage %>
-        <br />
-        Carga horária semanal: <%= proposal.weekly_hours %> horas
-        <br />
-        Conclusão esperada: <%= l proposal.expected_conclusion %>
-        <br />
-        <br />
+        <% if proposal.freelancer == current_freelancer %>
+            <% if %>
+                Justificativa: <%= proposal.proposal_description %>
+                <br />
+                Valor/hora: <%= number_to_currency proposal.hourly_wage %>
+                <br />
+                Carga horária semanal: <%= proposal.weekly_hours %> horas
+                <br />
+                Conclusão esperada: <%= l proposal.expected_conclusion %>
+                <br />
+                <br />
+            <% end %>
+        <% end %>
     <% end %>
+
+
+
 <% end %>
 
 <%= link_to 'Voltar', root_path %>

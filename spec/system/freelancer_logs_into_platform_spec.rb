@@ -178,6 +178,37 @@ describe 'Freelancer logs' do
       expect(page).not_to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
     end
 
+    it 'and edits own information' do
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      ux = FreelancerExpertise.create!(title: 'UX')
+      foo = Freelancer.create!(email: 'foo@bar.com', password: '123123', full_name: 'Foo Bar',
+        social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',
+        description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+        freelancer_expertise: webdev)
+
+      login_as foo, scope: :freelancer
+      visit root_path
+      click_on 'Ver meu perfil'
+      click_on 'Editar meu perfil'
+      fill_in 'Nome completo', with: 'Foo Bar2'
+      fill_in 'Nome social', with: 'Foo2'
+      fill_in 'Data de nascimento', with: '01/01/1950'
+      select 'UX', from: 'Área de atuação'
+      fill_in 'Formação profissional', with: 'Economia'
+      fill_in 'Descrição', with: 'Preciso de um freela2'
+      fill_in 'Experiência', with: 'Já trabalhei em muitos projetos2'
+      click_on 'Salvar Freelancer'
+
+      expect(page).to have_content 'Nome completo: Foo Bar2'
+      expect(page).to have_content 'Nome social: Foo2'
+      expect(page).to have_content 'Data de nascimento: 01/01/1950'
+      expect(page).to have_content 'Área de atuação: UX'
+      expect(page).to have_content 'Formação profissional: Economia'
+      expect(page).to have_content 'Descrição: Preciso de um freela2'
+      expect(page).to have_content 'Experiência: Já trabalhei em muitos projetos2'
+      
+    end
+
     it 'and comes back to homepage successfully' do
       foo = Freelancer.create!(email: 'foo@bar.com', password: '123123', full_name: 'Foo Bar',
         social_name: 'Foo', birth_date: '20/04/1990', degree: 'Engenharia',

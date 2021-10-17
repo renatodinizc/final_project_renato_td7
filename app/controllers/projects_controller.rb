@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     @proposal = Proposal.new
     @proposals = Proposal.where(project: Project.find(params[:id]))
   end
-
+  
   def new
     @project = Project.new
   end

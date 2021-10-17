@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Contractor edits project' do
+describe 'Contractor edits own project' do
   it 'successfully' do
     foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
     webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
