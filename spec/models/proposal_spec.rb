@@ -46,9 +46,11 @@ describe Proposal do
                                 remote: true,
                                 contractor: peter,
                                 freelancer_expertise: webdev)
-      proposal = Proposal.new(hourly_wage: 40, project: desafios)
+      proposal = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
+                                  hourly_wage: 40, weekly_hours: 12, expected_conclusion: '10/01/2022',
+                                  project: desafios, freelancer: spongebob)
 
-      proposal.save!
+      proposal.valid?
 
       expect(proposal.errors.full_messages_for(:hourly_wage)).to include 'Valor/hora não pode exceder o máximo preço por hora do projeto'
     end

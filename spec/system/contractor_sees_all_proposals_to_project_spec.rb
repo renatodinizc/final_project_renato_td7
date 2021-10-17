@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Contractor sees freeelancers who applied to project' do
+describe 'Contractor sees all proposals to project' do
   it 'successfully' do
     peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
     webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
@@ -34,7 +34,7 @@ describe 'Contractor sees freeelancers who applied to project' do
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
                                 project: website, freelancer: spongebob) 
     spongebob_proposal2 = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
-                                  hourly_wage: 3, weekly_hours: 1, expected_conclusion: '14/05/2022',
+                                  hourly_wage: 3, weekly_hours: 20, expected_conclusion: '14/05/2022',
                                   project: desafios, freelancer: spongebob)
 
     login_as peter, scope: :contractor
@@ -45,16 +45,20 @@ describe 'Contractor sees freeelancers who applied to project' do
     expect(page).to have_link 'Jane'
     expect(page).to have_content 'Descrição do profissional: Preciso de um freela'
     expect(page).to have_content 'Justificativa para o projeto: Quero muito contribuir'
-    expect(page).to have_content 'Preço/hora: R$ 14,00'
+    expect(page).to have_content 'Valor/hora: R$ 14,00'
+    expect(page).to have_content 'Carga horária semanal: 7 horas'
+    expect(page).to have_content 'Conclusão do projeto em: 22/01/2022'
     expect(page).to have_link 'Sponge Bob'
     expect(page).to have_content 'Descrição do profissional: Já trabalhei em águas internacionais, lido bem sob pressão e guardo bem os segredos '
     expect(page).to have_content 'Justificativa para o projeto: De hamburgueres para programação é batata'
-    expect(page).to have_content 'Preço/hora: R$ 3,00'
+    expect(page).to have_content 'Valor/hora: R$ 3,00'
+    expect(page).to have_content 'Carga horária semanal: 20 horas'
+    expect(page).to have_content 'Conclusão do projeto em: 14/05/2022'
     expect(page).not_to have_link 'Squidward'
     expect(page).not_to have_content 'Descrição do profissional: Gosto de organização e pontualidade nos meus trabalhos'
   end
 
-  it 'and access profile successfully' do
+  it 'and access freelancer profile successfully' do
     peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
     webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
     ux = FreelancerExpertise.create!(title: 'UX')

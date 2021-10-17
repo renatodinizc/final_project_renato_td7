@@ -5,12 +5,12 @@ class Proposal < ApplicationRecord
 
   validates :proposal_description, :hourly_wage, :weekly_hours, :expected_conclusion, presence: true
 
-  #validate :check_for_top_wage
+  validate :check_for_top_wage
 
   private
 
   def check_for_top_wage
-    if project.top_hourly_wage < self.hourly_wage
+    if hourly_wage && project.top_hourly_wage < self.hourly_wage
       errors.add(:hourly_wage, 'não pode exceder o máximo preço por hora do projeto')
     end
   end 
