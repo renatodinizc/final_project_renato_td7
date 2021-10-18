@@ -1,10 +1,13 @@
 class Proposal < ApplicationRecord
   belongs_to :project
   belongs_to :freelancer
+  has_many :chats
 
   validates :proposal_description, :hourly_wage, :weekly_hours, :expected_conclusion, presence: true
   enum status: {pending_approval: 0, proposal_approved: 10, proposal_denied: 20}
   validate :check_for_top_wage
+
+  validates :denial_feedback, presence: true, length: {minimum: 10}, on: :feedback_submission
 
   private
 
