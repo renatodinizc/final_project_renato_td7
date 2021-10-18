@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:show, :new, :create, :edit, :update, :destroy] do
     get 'search', on: :collection
-    resources :proposals, shallow: true
+    resources :proposals, shallow: true do
+      post 'accept', on: :member
+      post 'deny', on: :member
+    end
   end
 end

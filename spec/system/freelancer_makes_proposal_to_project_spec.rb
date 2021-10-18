@@ -32,7 +32,7 @@ describe 'Freelancer makes proposal to project' do
     expect(page).to have_content 'Valor/hora: R$ 14,00'
     expect(page).to have_content 'Carga horária semanal: 20 horas'
     expect(page).to have_content 'Conclusão esperada: 30/01/2022'
-    expect(page).to have_content 'Status da proposta: Aprovação pendente'
+    expect(page).to have_content 'Status da proposta: Pendente'
 
   end
 

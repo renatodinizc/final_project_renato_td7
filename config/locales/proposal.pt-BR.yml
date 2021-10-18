@@ -1,20 +1,18 @@
 ---
 pt-BR:
-  pending_approval: 'Aprovação pendente'
-  proposal_approved: 'Proposta aprovada'
-  proposal_denied: 'Proposta negada'
   activerecord:
     models:
       proposal: 'Proposta'
     attributes:
       proposal/status:
-        pending_approval: 'Aprovação pendente'
-        proposal_approved: 'Proposta aprovada'
-        proposal_denied: 'Proposta negada'
+        pending_approval: 'Pendente'
+        proposal_approved: 'Aprovada'
+        proposal_denied: 'Recusada'
       proposal:
         proposal_description: 'Justificativa'
         hourly_wage: 'Valor/hora'
         weekly_hours: 'Horas semanais'
         expected_conclusion: 'Conclusão esperada'
+        denial_feedback: 'Feedback de recusa'
           
 

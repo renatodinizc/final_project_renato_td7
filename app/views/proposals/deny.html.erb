@@ -1,0 +1,8 @@
+<h1> Feedback sobre recusa de proposta </h1>
+<%= form_with model: @proposal do |f| %>
+  <%= f.label :denial_feedback %>
+  <%= f.text_area :denial_feedback %>
+  <br />
+  <br />
+  <%= f.submit 'Enviar feedback' %>
+<% end %>

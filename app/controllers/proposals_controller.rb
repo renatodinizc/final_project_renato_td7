@@ -9,6 +9,34 @@ class ProposalsController < ApplicationController
 
     flash[:errors] = "Todos campos devem ser preenchidos"
     redirect_to project_path @proposal.project
+  end
 
+  def update
+    @proposal = Proposal.find(params[:id])
+    if @proposal.update(params.require(:proposal).permit(:denial_feedback))
+      redirect_to project_path @proposal.project
+    else
+      render :deny
+    end
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    @proposal = Proposal.find(params[:id])
+    @proposal.destroy
+    redirect_to project_path @project
+  end
+
+  def accept
+    @proposal = Proposal.find(params[:id])
+    @proposal.proposal_approved!
+    @proposal.save
+    redirect_to project_path @proposal.project
+  end
+
+  def deny
+    @proposal = Proposal.find(params[:id])
+    @proposal.proposal_denied!
+    @proposal.save
   end
 end
