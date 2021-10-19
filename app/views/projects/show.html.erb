@@ -49,9 +49,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
         <% elsif proposal.denial_feedback %>
             Feedback de recusa: <%= proposal.denial_feedback %>
         <% else %>
-            <%= form_with model: @chat, url: proposal_chats_path(proposal) do |f| %>
-                <%= f.submit 'Ir para chat' %>
-            <% end %>
+            <%= link_to 'Ir para chat', proposal_path(proposal) %>
         <% end %>
         <br />
         <br />

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_125116) do
+ActiveRecord::Schema.define(version: 2021_10_19_212224) do
 
   create_table "chats", force: :cascade do |t|
     t.string "commenter"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_125116) do
     t.integer "freelancer_id", null: false
     t.integer "status", default: 0
     t.string "denial_feedback"
+    t.integer "contractor_id", null: false
+    t.index ["contractor_id"], name: "index_proposals_on_contractor_id"
     t.index ["freelancer_id"], name: "index_proposals_on_freelancer_id"
     t.index ["project_id"], name: "index_proposals_on_project_id"
   end
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_125116) do
   add_foreign_key "freelancers", "freelancer_expertises"
   add_foreign_key "projects", "contractors"
   add_foreign_key "projects", "freelancer_expertises"
+  add_foreign_key "proposals", "contractors"
   add_foreign_key "proposals", "freelancers"
   add_foreign_key "proposals", "projects"
 end

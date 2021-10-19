@@ -14,7 +14,7 @@ describe 'Chat channel opens after proposal acceptance' do
                               proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)
     proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
 
     login_as peter, scope: :contractor
     visit root_path
@@ -23,7 +23,7 @@ describe 'Chat channel opens after proposal acceptance' do
     click_on 'Aprovar proposta'
     click_on 'Ir para chat'
 
-    expect(page).to have_css 'h1', text: 'Chat entre peterparker@hub.com e SpongeBob'
+    expect(page).to have_css 'h1', text: 'Chat entre peterparker@hub.com e Sponge Bob'
 
   end
 end

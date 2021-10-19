@@ -5,4 +5,5 @@ class Contractor < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects
+  has_many :proposals, through: :projects
 end
