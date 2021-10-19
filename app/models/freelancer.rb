@@ -8,6 +8,7 @@ class Freelancer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :proposals
+  has_many :chats, through: :proposals
 
   has_many :projects, through: :proposals
   validates :full_name, :social_name, :birth_date, :degree, :description, :experience, :freelancer_expertise, presence: true, on: :profile_completion

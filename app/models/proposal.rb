@@ -1,7 +1,7 @@
 class Proposal < ApplicationRecord
   belongs_to :project
   belongs_to :freelancer
-  has_many :chats
+  has_one :chat
 
   validates :proposal_description, :hourly_wage, :weekly_hours, :expected_conclusion, presence: true
   enum status: {pending_approval: 0, proposal_approved: 10, proposal_denied: 20}

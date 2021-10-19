@@ -20,15 +20,10 @@ describe 'Chat channel opens after proposal acceptance' do
     visit root_path
     click_on 'Ver meu perfil'
     click_on 'Website para grupo de estudos'
-    #click_on 'Aprovar proposta'
-    new_window = page.window_opened_by do
-      click_on 'Aprovar proposta'
-    end
+    click_on 'Aprovar proposta'
+    click_on 'Ir para chat'
 
-    page.within_window(new_window) do
-      expect(page).to have_css 'h1', text: 'Chat entre peterparker@hub.com e SpongeBob'
-    end
-    
+    expect(page).to have_css 'h1', text: 'Chat entre peterparker@hub.com e SpongeBob'
 
   end
 end

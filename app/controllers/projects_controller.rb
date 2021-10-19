@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @proposal = Proposal.new
     @proposals = Proposal.where(project: Project.find(params[:id]))
+    @chat = Chat.new
   end
   
   def new

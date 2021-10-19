@@ -43,11 +43,15 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
         Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}") %>
         <br />
         <% if Proposal.human_attribute_name("status.#{proposal.status}") == 'Pendente' %>
-            <%= link_to 'Aprovar proposta', accept_proposal_path(proposal), method: :post  %>
+            <%= link_to 'Aprovar proposta', accept_proposal_path(proposal), method: :post %>
             &emsp;
             <%= link_to 'Recusar proposta', deny_proposal_path(proposal), method: :post %>
         <% elsif proposal.denial_feedback %>
             Feedback de recusa: <%= proposal.denial_feedback %>
+        <% else %>
+            <%= form_with model: @chat, url: proposal_chats_path(proposal) do |f| %>
+                <%= f.submit 'Ir para chat' %>
+            <% end %>
         <% end %>
         <br />
         <br />
