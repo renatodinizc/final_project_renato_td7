@@ -47,7 +47,7 @@ describe 'Chat channel opens after proposal acceptance' do
     click_on 'Website para grupo de estudos'
     click_on 'Aprovar proposta'
     click_on 'Ir para chat'
-    fill_in 'Message', with: 'Hello World!'
+    fill_in 'Mensagem', with: 'Hello World!'
     click_on 'Enviar mensagem'
 
     expect(page).to have_content 'peterparker@hub.com: Hello World'
@@ -75,7 +75,7 @@ describe 'Chat channel opens after proposal acceptance' do
     click_on 'Meus projetos'
     click_on 'Website para grupo de estudos'
     click_on 'Ir para chat'
-    fill_in 'Message', with: 'Hello World!'
+    fill_in 'Mensagem', with: 'Hello World!'
     click_on 'Enviar mensagem'
 
     expect(page).to have_content 'Sponge Bob: Hello World'
