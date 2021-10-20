@@ -70,10 +70,10 @@ describe 'Freelancer makes proposal to project' do
                     freelancer_expertise: webdev)
     jane_proposal1 = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                       hourly_wage:76 , weekly_hours: 7, expected_conclusion: '22/01/2022',
-                                      project: website, freelancer: jane)
+                                      project: website, freelancer: jane, contractor: peter)
     jane_proposal2 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                       hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                      project: desafios, freelancer: jane) 
+                                      project: desafios, freelancer: jane, contractor: peter) 
 
     login_as jane, scope: :freelancer                                 
     visit root_path

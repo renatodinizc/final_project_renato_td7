@@ -22,10 +22,10 @@ describe 'Freelancer fails to see proposals from others' do
                               proposal_deadline: '22/01/2022', remote: true, contractor: peter, freelancer_expertise: webdev)
     jane_proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                 hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
-                                project: desafios, freelancer: jane)
+                                project: desafios, freelancer: jane, contractor: peter)
     spongebob_proposal2 = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
                                   hourly_wage: 3, weekly_hours: 6, expected_conclusion: '14/05/2022',
-                                  project: desafios, freelancer: spongebob)
+                                  project: desafios, freelancer: spongebob, contractor: peter)
 
     login_as squidward, scope: :freelancer
     visit root_path

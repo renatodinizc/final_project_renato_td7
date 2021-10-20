@@ -1,13 +1,15 @@
 <h1> Chat entre <%= @proposal.contractor.email %> e <%= @proposal.freelancer.social_name %> </h1>
 
-
-<%= form_with model: @chat, url: proposal_chats_path(@proposal) do |f| %>
-  Nova mensagem
-  <%= f.label :commenter %>
-  <%= f.text_field :commenter %>
+<% @proposal.chats.each do |chat| %>
+  <%= chat.commenter %>: <%= chat.message %>
+  <br />
+<% end %>
+<br />
+<%= form_with model:  [ @proposal, @proposal.chats.build ] do |f| %>
+  Nova mensagem:
   <br />
   <%= f.label :message %>
   <%= f.text_area :message %>
   <br />
-  <%= f.submit %>
+  <%= f.submit 'Enviar mensagem' %>
 <% end %>

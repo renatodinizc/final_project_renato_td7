@@ -18,24 +18,24 @@ describe 'Contractor sees all proposals to project' do
                                 description: 'Gosto de organização e pontualidade nos meus trabalhos',
                                 experience: 'Já trabalhei como contador e caixa no Siri Cascudo', freelancer_expertise: webdev)
     website = Project.create!(title: 'Website para grupo de estudos', description: 'Grupo de estudos liberal de Salvador',
-                              desired_skills: 'Orientado a prazos e qualidade', top_hourly_wage: 10,
+                              desired_skills: 'Orientado a prazos e qualidade', top_hourly_wage: 60,
                               proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)
     artes = Project.create!(title: 'Artes impressas para palestra',
                             description: 'Campeonato de debates na USP', desired_skills: 'Pessoa criativa e dinâmica',
-                            top_hourly_wage: 7, proposal_deadline: '08/06/2021',
+                            top_hourly_wage: 50, proposal_deadline: '08/06/2021',
                             remote: false, contractor: peter, freelancer_expertise: ux)
     desafios = Project.create!(title: 'Plataforma de desafios de programação', description: 'Pessoal da Campus Code',
-                              desired_skills: 'Esforçada, obstinada e cuidadosa', top_hourly_wage: 37,
+                              desired_skills: 'Esforçada, obstinada e cuidadosa', top_hourly_wage: 87,
                               proposal_deadline: '22/01/2022', remote: true, contractor: peter, freelancer_expertise: webdev)
     jane_proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                 hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
-                                project: desafios, freelancer: jane)
+                                project: desafios, freelancer: jane, contractor: peter)
     spongebob_proposal1 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
     spongebob_proposal2 = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
                                   hourly_wage: 3, weekly_hours: 20, expected_conclusion: '14/05/2022',
-                                  project: desafios, freelancer: spongebob)
+                                  project: desafios, freelancer: spongebob, contractor: peter)
 
     login_as peter, scope: :contractor
     visit root_path
@@ -86,13 +86,13 @@ describe 'Contractor sees all proposals to project' do
                               proposal_deadline: '22/01/2022', remote: true, contractor: peter, freelancer_expertise: webdev)
     jane_proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                 hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
-                                project: desafios, freelancer: jane)
+                                project: desafios, freelancer: jane, contractor: peter)
     spongebob_proposal1 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
     spongebob_proposal2 = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
                                   hourly_wage: 3, weekly_hours: 1, expected_conclusion: '14/05/2022',
-                                  project: desafios, freelancer: spongebob)
+                                  project: desafios, freelancer: spongebob, contractor: peter)
 
     login_as peter, scope: :contractor
     visit root_path

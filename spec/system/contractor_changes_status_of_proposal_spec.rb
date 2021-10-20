@@ -14,7 +14,7 @@ describe 'Contractor changes status of proposal' do
                               proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)
     proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
 
     login_as peter, scope: :contractor
     visit root_path
@@ -39,7 +39,7 @@ describe 'Contractor changes status of proposal' do
                               proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)
     proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
 
     login_as peter, scope: :contractor
     visit root_path
@@ -67,7 +67,7 @@ describe 'Contractor changes status of proposal' do
                               proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)
     proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
 
     login_as peter, scope: :contractor
     visit root_path
@@ -96,7 +96,7 @@ describe 'Contractor changes status of proposal' do
                               proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)
     proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob) 
+                                project: website, freelancer: spongebob, contractor: peter) 
 
     login_as peter, scope: :contractor
     visit root_path

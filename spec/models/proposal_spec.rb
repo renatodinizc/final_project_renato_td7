@@ -30,6 +30,15 @@ describe Proposal do
 
       expect(proposal.errors.full_messages_for(:expected_conclusion)).to include 'Conclusão esperada não pode ficar em branco'
     end
+    
+    it 'the denial feedback attribute successfuly' do
+      proposal = Proposal.new
+
+      proposal.valid?(:feedback_submission)
+
+      expect(proposal.errors.full_messages_for(:denial_feedback)).to include 'Feedback de recusa não pode ficar em branco'
+      expect(proposal.errors.full_messages_for(:denial_feedback)).to include 'Feedback de recusa é muito curto (mínimo: 10 caracteres)'
+    end
 
     it "custom attribute 'check for top wage' successfully" do
       peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
@@ -71,7 +80,7 @@ describe Proposal do
                                 freelancer_expertise: webdev)
       proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                   hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
-                                  project: website, freelancer: jane)
+                                  project: website, freelancer: jane, contractor: peter)
 
       expect(proposal.status).to eq 'pending_approval'
     end

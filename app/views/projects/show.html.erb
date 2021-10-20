@@ -90,13 +90,15 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                 <br />
                 Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}") %>
                 <br />
-                <% if proposal.denial_feedback %>
-                    Feedback de recusa: <%= proposal.denial_feedback %>
-                    <br />
-                <% end %>
                 <% if Proposal.human_attribute_name("status.#{proposal.status}") == 'Pendente' %>
                     <%= link_to 'Desistir de proposta', proposal, method: :delete, data: { confirm: 'Você tem certeza?'}%>
                     <br />
+                <% elsif proposal.denial_feedback %>
+                      Feedback de recusa: <%= proposal.denial_feedback %>
+                      <br />
+                <% else %>
+                 <%= link_to 'Ir para chat', proposal_path(proposal) %>
+                 <br />
                 <% end %>
                 <br />
             <% end %>
