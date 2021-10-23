@@ -30,12 +30,12 @@ describe 'Contractor sees all proposals to project' do
     jane_proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                 hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
                                 project: desafios, freelancer: jane, contractor: peter)
-    spongebob_proposal1 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
+    spongebob_proposal = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob, contractor: peter) 
-    spongebob_proposal2 = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
+                                project: desafios, freelancer: spongebob, contractor: peter) 
+    squidward_proposal = Proposal.create!(proposal_description: 'De caixa administrativo do Siri Cascudo para programação é batata',
                                   hourly_wage: 3, weekly_hours: 20, expected_conclusion: '14/05/2022',
-                                  project: desafios, freelancer: spongebob, contractor: peter)
+                                  project: website, freelancer: squidward, contractor: peter)
 
     login_as peter, scope: :contractor
     visit root_path
@@ -51,9 +51,9 @@ describe 'Contractor sees all proposals to project' do
     expect(page).to have_link 'Sponge Bob'
     expect(page).to have_content 'Descrição do profissional: Já trabalhei em águas internacionais, lido bem sob pressão e guardo bem os segredos '
     expect(page).to have_content 'Justificativa para o projeto: De hamburgueres para programação é batata'
-    expect(page).to have_content 'Valor/hora: R$ 3,00'
-    expect(page).to have_content 'Carga horária semanal: 20 horas'
-    expect(page).to have_content 'Conclusão do projeto em: 14/05/2022'
+    expect(page).to have_content 'Valor/hora: R$ 8,00'
+    expect(page).to have_content 'Carga horária semanal: 10 horas'
+    expect(page).to have_content 'Conclusão do projeto em: 10/01/2022'
     expect(page).not_to have_link 'Squidward'
     expect(page).not_to have_content 'Descrição do profissional: Gosto de organização e pontualidade nos meus trabalhos'
   end
@@ -87,12 +87,12 @@ describe 'Contractor sees all proposals to project' do
     jane_proposal = Proposal.create!(proposal_description: 'Quero muito contribuir',
                                 hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
                                 project: desafios, freelancer: jane, contractor: peter)
-    spongebob_proposal1 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
+    spongebob_proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                project: website, freelancer: spongebob, contractor: peter) 
-    spongebob_proposal2 = Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
+                                project: desafios, freelancer: spongebob, contractor: peter) 
+    squidward_proposal = Proposal.create!(proposal_description: 'De caixa administrativo do Siri Cascudo para programação é batata',
                                   hourly_wage: 3, weekly_hours: 1, expected_conclusion: '14/05/2022',
-                                  project: desafios, freelancer: spongebob, contractor: peter)
+                                  project: website, freelancer: squidward, contractor: peter)
 
     login_as peter, scope: :contractor
     visit root_path

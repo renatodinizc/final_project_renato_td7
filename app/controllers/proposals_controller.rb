@@ -10,10 +10,15 @@ class ProposalsController < ApplicationController
     @proposal.project = Project.find(params[:project_id])
     @proposal.freelancer = current_freelancer
     @proposal.contractor = Project.find(params[:project_id]).contractor
-    @proposal.save
+    if @proposal.save
+      redirect_to project_path @proposal.project
+    else
+      @project = @proposal.project
+      @proposals = Proposal.where(project: @project)
+      
+      render 'projects/show'
+    end
 
-    flash[:errors] = "Todos campos devem ser preenchidos"
-    redirect_to project_path @proposal.project
   end
 
 =begin

@@ -72,8 +72,8 @@ describe 'Freelancer makes proposal to project' do
                                       hourly_wage:76 , weekly_hours: 7, expected_conclusion: '22/01/2022',
                                       project: website, freelancer: jane, contractor: peter)
     jane_proposal2 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
-                                      hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                      project: desafios, freelancer: jane, contractor: peter) 
+                                      hourly_wage: 40, weekly_hours: 10, expected_conclusion: '10/01/2022',
+                                      project: artes, freelancer: jane, contractor: peter) 
 
     login_as jane, scope: :freelancer                                 
     visit root_path
@@ -82,9 +82,9 @@ describe 'Freelancer makes proposal to project' do
     expect(page).to have_content 'Meus projetos:'
     expect(page).to have_link 'Website para grupo de estudos'
     expect(page).to have_content 'Descrição: Grupo de estudos liberal de Salvador'
-    expect(page).to have_link 'Plataforma de desafios de programação'
-    expect(page).to have_content 'Descrição: Pessoal da Campus Code'
-    expect(page).not_to have_link 'Artes impressas para palestra'
-    expect(page).not_to have_content 'Campeonato de debates na USP'
+    expect(page).to have_link 'Artes impressas para palestra'
+    expect(page).to have_content 'Campeonato de debates na USP'
+    expect(page).not_to have_link 'Plataforma de desafios de programação'
+    expect(page).not_to have_content 'Pessoal da Campus Code'
   end
 end

@@ -5,6 +5,7 @@ class Proposal < ApplicationRecord
   has_many :chats
   has_one :feedback
 
+  validates :freelancer_id, uniqueness: {scope: :project_id, message: 'não pode enviar mais de uma proposta simultânea para mesmo projeto'}
   validates :proposal_description, :hourly_wage, :weekly_hours, :expected_conclusion, presence: true
   enum status: {pending_approval: 0, proposal_approved: 10, proposal_denied: 20}
   validate :check_for_top_wage

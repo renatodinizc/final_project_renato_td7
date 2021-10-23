@@ -78,7 +78,7 @@ describe 'Contractor changes status of proposal' do
     click_on 'Enviar feedback'
 
     expect(page).not_to have_content 'Status da proposta: Recusada'
-    expect(page).to have_content 'Feedback sobre recusa de proposta'
+    expect(page).to have_css  'h2', text: 'Por favor informe o motivo da recusa'
     expect(page).to have_content 'Motivo não pode ficar em branco'
     expect(page).to have_button 'Enviar feedback'
   end
@@ -107,7 +107,7 @@ describe 'Contractor changes status of proposal' do
     click_on 'Enviar feedback'
 
     expect(page).not_to have_content 'Status da proposta: Recusada'
-    expect(page).to have_content 'Feedback sobre recusa de proposta'
+    expect(page).to have_css 'h2', text: 'Por favor informe o motivo da recusa'
     expect(page).to have_content 'Motivo é muito curto (mínimo: 10 caracteres)'
     expect(page).to have_button 'Enviar feedback'
   end
