@@ -16,6 +16,7 @@ class ProposalsController < ApplicationController
     redirect_to project_path @proposal.project
   end
 
+=begin
   def update
     @proposal = Proposal.find(params[:id])
     @proposal.update(params.require(:proposal).permit(:denial_feedback))
@@ -25,6 +26,7 @@ class ProposalsController < ApplicationController
       render :deny
     end
   end
+=end
 
   def destroy
     @proposal = Proposal.find(params[:id])
@@ -43,5 +45,6 @@ class ProposalsController < ApplicationController
   def deny
     @proposal = Proposal.find(params[:id])
     @proposal.proposal_denied!
+    redirect_to new_proposal_feedback_path(@proposal) 
   end
 end

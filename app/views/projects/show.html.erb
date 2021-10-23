@@ -46,8 +46,8 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
             <%= link_to 'Aprovar proposta', accept_proposal_path(proposal), method: :post %>
             &emsp;
             <%= link_to 'Recusar proposta', deny_proposal_path(proposal), method: :post %>
-        <% elsif proposal.denial_feedback %>
-            Feedback de recusa: <%= proposal.denial_feedback %>
+        <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Recusada' %>
+            Motivo: <%= proposal.feedback.body %>
         <% else %>
             <%= link_to 'Ir para chat', proposal_path(proposal) %>
         <% end %>
@@ -93,8 +93,8 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                 <% if Proposal.human_attribute_name("status.#{proposal.status}") == 'Pendente' %>
                     <%= link_to 'Desistir de proposta', proposal, method: :delete, data: { confirm: 'Você tem certeza?'}%>
                     <br />
-                <% elsif proposal.denial_feedback %>
-                      Feedback de recusa: <%= proposal.denial_feedback %>
+                <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Recusada' %>
+                      Feedback de recusa: 
                       <br />
                 <% else %>
                  <%= link_to 'Ir para chat', proposal_path(proposal) %>

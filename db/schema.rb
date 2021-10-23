@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_212224) do
+ActiveRecord::Schema.define(version: 2021_10_22_125057) do
 
   create_table "chats", force: :cascade do |t|
     t.string "commenter"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 2021_10_19_212224) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_contractors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_contractors_on_reset_password_token", unique: true
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "proposal_id", null: false
+    t.index ["proposal_id"], name: "index_feedbacks_on_proposal_id"
   end
 
   create_table "freelancer_expertises", force: :cascade do |t|
@@ -84,7 +92,6 @@ ActiveRecord::Schema.define(version: 2021_10_19_212224) do
     t.integer "project_id", null: false
     t.integer "freelancer_id", null: false
     t.integer "status", default: 0
-    t.string "denial_feedback"
     t.integer "contractor_id", null: false
     t.index ["contractor_id"], name: "index_proposals_on_contractor_id"
     t.index ["freelancer_id"], name: "index_proposals_on_freelancer_id"
@@ -92,6 +99,7 @@ ActiveRecord::Schema.define(version: 2021_10_19_212224) do
   end
 
   add_foreign_key "chats", "proposals"
+  add_foreign_key "feedbacks", "proposals"
   add_foreign_key "freelancers", "freelancer_expertises"
   add_foreign_key "projects", "contractors"
   add_foreign_key "projects", "freelancer_expertises"

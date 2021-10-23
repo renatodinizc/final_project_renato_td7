@@ -1,3 +1,21 @@
+<h1> Proposta </h1>
+
+<%= link_to @proposal.freelancer.social_name, freelancer_path(@proposal.freelancer) %>
+<br />
+Descrição do profissional: <%= @proposal.freelancer.description %>
+<br />
+Justificativa para o projeto: <%= @proposal.proposal_description %>
+<br />
+Carga horária semanal: <%= @proposal.weekly_hours %> horas
+<br />
+Conclusão do projeto em: <%= l @proposal.expected_conclusion %>
+<br />
+Valor/hora: <%= number_to_currency(@proposal.hourly_wage) %>
+<br />
+Status da proposta: <%= Proposal.human_attribute_name("status.#{@proposal.status}") %>
+<br />
+
+
 <h1> Chat entre <%= @proposal.contractor.email %> e <%= @proposal.freelancer.social_name %> </h1>
 
 <% @proposal.chats.each do |chat| %>

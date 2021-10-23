@@ -46,11 +46,11 @@ describe 'Contractor changes status of proposal' do
     click_on 'Ver meu perfil'
     click_on 'Website para grupo de estudos'
     click_on 'Recusar proposta'
-    fill_in 'Feedback de recusa', with: 'Muito obrigado pela oferta, mas o tempo hábil de finalização do projeto não é o ideal'
+    fill_in 'Motivo', with: 'Muito obrigado pela oferta, mas o tempo hábil de finalização do projeto não é o ideal'
     click_on 'Enviar feedback'
 
     expect(page).to have_content 'Status da proposta: Recusada'
-    expect(page).to have_content 'Feedback de recusa: Muito obrigado pela oferta, mas o tempo hábil de finalização do projeto não é o ideal'
+    expect(page).to have_content 'Motivo: Muito obrigado pela oferta, mas o tempo hábil de finalização do projeto não é o ideal'
     expect(page).not_to have_link 'Recusar proposta'
   end
 
@@ -74,12 +74,12 @@ describe 'Contractor changes status of proposal' do
     click_on 'Ver meu perfil'
     click_on 'Website para grupo de estudos'
     click_on 'Recusar proposta'
-    fill_in 'Feedback de recusa', with: ''
+    fill_in 'Motivo', with: ''
     click_on 'Enviar feedback'
 
     expect(page).not_to have_content 'Status da proposta: Recusada'
     expect(page).to have_content 'Feedback sobre recusa de proposta'
-    expect(page).to have_content 'Feedback de recusa não pode ficar em branco'
+    expect(page).to have_content 'Motivo não pode ficar em branco'
     expect(page).to have_button 'Enviar feedback'
   end
 
@@ -103,12 +103,12 @@ describe 'Contractor changes status of proposal' do
     click_on 'Ver meu perfil'
     click_on 'Website para grupo de estudos'
     click_on 'Recusar proposta'
-    fill_in 'Feedback de recusa', with: 'Não'
+    fill_in 'Motivo', with: 'Não'
     click_on 'Enviar feedback'
 
     expect(page).not_to have_content 'Status da proposta: Recusada'
     expect(page).to have_content 'Feedback sobre recusa de proposta'
-    expect(page).to have_content 'Feedback de recusa é muito curto (mínimo: 10 caracteres)'
+    expect(page).to have_content 'Motivo é muito curto (mínimo: 10 caracteres)'
     expect(page).to have_button 'Enviar feedback'
   end
 

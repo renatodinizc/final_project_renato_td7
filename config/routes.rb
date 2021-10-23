@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :proposals do
       post 'accept', on: :member
       post 'deny', on: :member
+      resource :feedback, only: [:new, :create]
       resources :chats do
         get 'create_new_chat_window', on: :collection
       end

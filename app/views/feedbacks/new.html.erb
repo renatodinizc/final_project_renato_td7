@@ -1,0 +1,9 @@
+<h1> Feedback sobre recusa de proposta de novo model</h1>
+<%= form_with model: @feedback, url: proposal_feedback_path do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= @feedback.errors.full_messages_for(:body)[0] %>
+  <br />
+  <br />
+  <%= f.submit 'Enviar feedback' %>
+<% end %>

@@ -56,10 +56,3 @@ describe Freelancer do
   end
 end
 
-
-#social_name
-#birth_date
-#degree
-#description
-#experience
-#freelancer_expertise_id
