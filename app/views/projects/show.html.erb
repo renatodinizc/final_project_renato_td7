@@ -18,7 +18,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 <% end %>
 </p>
 
-<% if contractor_signed_in? #&& current_contractor == @project.contractor %>
+<% if contractor_signed_in? && current_contractor == @project.contractor %>
     <%= link_to 'Editar informações do projeto', edit_project_path %>
     <br />
     <%= link_to 'Remover projeto', @project, method: :delete, data: { confirm: 'Você tem certeza?'} %>
@@ -82,7 +82,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 
     <h4> Suas propostas: </h4>
     <% @proposals.each do |proposal| %>
-        <% if proposal.freelancer == current_freelancer %>
+        <% if proposal.archived == false && proposal.freelancer == current_freelancer %>
             <% if %>
                 Justificativa: <%= proposal.proposal_description %>
                 <br />
@@ -95,7 +95,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                 Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}") %>
                 <br />
                 <% if Proposal.human_attribute_name("status.#{proposal.status}") == 'Pendente' %>
-                    <%= link_to 'Desistir de proposta', proposal, method: :delete, data: { confirm: 'Você tem certeza?'}%>
+                    <%= link_to 'Desistir de proposta', archive_proposal_path(proposal), method: :post, data: { confirm: 'Você tem certeza?'}%>
                     <br />
                 <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Recusada' %>
                       Feedback de recusa: 

@@ -1,6 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :authenticate_contractor!, :check_proposal_contractor, only: [:accept, :deny]
-  before_action :authenticate_freelancer!, only: [:create, :destroy]
+  before_action :authenticate_freelancer!, only: [:create, :archive]
   before_action :authenticate_any!, :identify_current_account, :is_proposal_accepted, only: [:show]
 
   def show
@@ -24,17 +24,17 @@ class ProposalsController < ApplicationController
 
   end
 
-  def destroy
+  def archive
     @proposal = Proposal.find(params[:id])
 
     if @proposal.freelancer != current_freelancer
       flash[:notice] = 'VOCÊ NÃO POSSUI ACESSO A ESTA PROPOSTA'
       return redirect_to project_path @proposal.project
     end
-    
-    project = @proposal.project
-    @proposal.destroy
-    redirect_to project_path(project)
+    #project = @proposal.project
+    @proposal.archived = true
+    @proposal.save
+    redirect_to project_path(@proposal.project)
   end
 
   def accept

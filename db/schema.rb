@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_125057) do
+ActiveRecord::Schema.define(version: 2021_10_24_122805) do
 
   create_table "chats", force: :cascade do |t|
     t.string "commenter"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_125057) do
     t.integer "freelancer_id", null: false
     t.integer "status", default: 0
     t.integer "contractor_id", null: false
+    t.boolean "archived", default: false, null: false
     t.index ["contractor_id"], name: "index_proposals_on_contractor_id"
     t.index ["freelancer_id"], name: "index_proposals_on_freelancer_id"
     t.index ["project_id"], name: "index_proposals_on_project_id"

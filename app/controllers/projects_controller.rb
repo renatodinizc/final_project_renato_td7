@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @proposal = Proposal.new
-    @proposals = Proposal.where(project: Project.find(params[:id]))
+    @proposals = Proposal.where(project: Project.find(params[:id]), archived: false)
     @chat = Chat.new
   end
   
