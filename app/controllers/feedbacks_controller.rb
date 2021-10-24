@@ -1,4 +1,5 @@
 class FeedbacksController < ApplicationController
+  before_action :authenticate_contractor!, only: [:new, :create]
 
   def new
     @feedback = Feedback.new

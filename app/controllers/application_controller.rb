@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
     params[:search].strip
   end
 
+  def authenticate_any!
+    if contractor_signed_in?
+        true
+    else
+        authenticate_freelancer!
+    end
+  end
+
   # Solução refatorada. Usuário ja é direcionado para root_path com perfil completo, mas ainda passa pela tela repetida
   # de login caso não esteja com cadastro completo. É necessário rodar um F5
   def after_sign_in_path_for(resource)
@@ -14,5 +22,7 @@ class ApplicationController < ActionController::Base
       edit_freelancer_path resource
     end
   end
+
+
 
 end

@@ -15,7 +15,7 @@ class Proposal < ApplicationRecord
   private
 
   def check_for_top_wage
-    if hourly_wage && project.top_hourly_wage < self.hourly_wage
+    if hourly_wage && project.top_hourly_wage <= self.hourly_wage
       errors.add(:hourly_wage, 'não pode exceder o máximo preço por hora do projeto')
     end
   end 

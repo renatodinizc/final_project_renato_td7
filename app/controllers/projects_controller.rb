@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_contractor!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_any!, only: [:search]
+  before_action :check_project_contractor, only: [:edit, :update, :destroy]
 
   def show
     @project = Project.find(params[:id])
@@ -50,4 +53,16 @@ class ProjectsController < ApplicationController
     @projects = Project.where("title LIKE ?", "%#{get_search_input}%").
                 or(Project.where("description LIKE ?", "%#{get_search_input}%"))
   end
+
+
+  private
+
+  def check_project_contractor
+    @project = Project.find(params[:id])
+    if @project.contractor != current_contractor
+      flash[:notice] = 'VOCÊ NÃO POSSUI ACESSO A ESTE PROJETO'
+      redirect_to project_path @project
+    end
+  end
+
 end

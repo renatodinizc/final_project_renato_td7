@@ -18,7 +18,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 <% end %>
 </p>
 
-<% if contractor_signed_in? && current_contractor == @project.contractor %>
+<% if contractor_signed_in? #&& current_contractor == @project.contractor %>
     <%= link_to 'Editar informações do projeto', edit_project_path %>
     <br />
     <%= link_to 'Remover projeto', @project, method: :delete, data: { confirm: 'Você tem certeza?'} %>

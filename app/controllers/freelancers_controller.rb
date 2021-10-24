@@ -1,4 +1,7 @@
 class FreelancersController < ApplicationController
+  before_action :authenticate_freelancer!, only: [:edit, :update, :my_projects]
+  before_action :authenticate_any!, only: [:show]
+
   def show
     if freelancer_signed_in?
       @freelancer = current_freelancer
