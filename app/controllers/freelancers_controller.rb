@@ -1,6 +1,6 @@
 class FreelancersController < ApplicationController
-  before_action :authenticate_freelancer!, only: [:edit, :update, :my_projects]
-  before_action :authenticate_any!, only: [:show]
+  before_action :authenticate_freelancer!, :check_freelancer_identity, only: [:edit, :update, :my_projects]
+  before_action :authenticate_any!, :check_freelancer_identity, only: [:show]
 
   def show
     if freelancer_signed_in?
@@ -27,6 +27,18 @@ class FreelancersController < ApplicationController
 
   def my_projects
     @proposals = Proposal.where(freelancer: current_freelancer)
+  end
+
+  private 
+
+  def check_freelancer_identity
+    if current_freelancer
+      @freelancer = Freelancer.find(params[:id])
+      if @freelancer.email != current_freelancer.email
+        flash[:notice] = 'VOCÊ NÃO POSSUI ACESSO AO PROFILE DE OUTROS FREELANCERS'
+        redirect_to freelancer_path current_freelancer
+      end
+    end
   end
   
 end

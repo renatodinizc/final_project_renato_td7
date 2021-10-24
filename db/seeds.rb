@@ -1,14 +1,16 @@
 # Contractors
 renato = Contractor.create!(email: 'renato@hub.com', password: '123123')
+joao = Contractor.create!(email: 'joao@hub.com', password: '123123')
 
 # Freelancers Expertises
 webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
 ux = FreelancerExpertise.create!(title: 'UX')
+designer = FreelancerExpertise.create!(title: 'Designer')
 
 # Freelancers
-jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
-                          social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
-                          description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
+sandy = Freelancer.create!(email: 'sandycheecks@hub.com', password: '123123', full_name: 'Sandra Jennifer Cheeks',
+                          social_name: 'Sandy', birth_date: '20/04/1990', degree: 'Engenharia',
+                          description: 'Vim da superfície para viver aqui', experience: 'Sou bastante esforçada e dedicada',
                           freelancer_expertise: ux)
 spongebob = Freelancer.create!(email: 'spongebob@hub.com', password: '123123', full_name: 'Sponge Bob SquarePants',
                           social_name: 'Sponge Bob', birth_date: '14/07/1986', degree: 'Cooking',
@@ -32,9 +34,9 @@ desafios = Project.create!(title: 'Plataforma de desafios de programação', des
                           proposal_deadline: '22/01/2022', remote: true, contractor: renato, freelancer_expertise: webdev)
       
 # Proposals
-Proposal.create!(proposal_description: 'Quero muito contribuir',
+Proposal.create!(proposal_description: 'Me divirto trabalhando e realizando projetos novos',
                             hourly_wage: 14, weekly_hours: 7, expected_conclusion: '22/01/2022',
-                            project: website, freelancer: jane, contractor: renato)
-Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
-                            hourly_wage: 8, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                            project: website, freelancer: spongebob, contractor: renato) 
+                            project: website, freelancer: sandy, contractor: renato)
+Proposal.create!(proposal_description: 'Quero ganhar experiência com projetos na área',
+                            hourly_wage: 25, weekly_hours: 10, expected_conclusion: '10/01/2022',
+                            project: website, freelancer: spongebob, contractor: renato)
