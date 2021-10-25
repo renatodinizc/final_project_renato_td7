@@ -42,26 +42,28 @@ O projeto conta com outros models secundários que adicionam opções importante
 INSTALAÇÃO
 
 * Baixe o repositório
-'''
+
+```
 git clone git@github.com:renatodinizc/final_project_renato_td7
 cd final_project_renato_td7
-'''
+```
 
 * Cheque sua versão de ruby
-'ruby -v'
 
-O resultado deve ser começar com 'ruby 3.0.2'
+`ruby -v`
+
+O resultado deve ser começar com `ruby 3.0.2`
 
 Em caso de diferença de versões, instale a versão referente ao projeto utilizando rbenv:
 
-'rbenv install 3.0.2'
+`rbenv install 3.0.2`
 
 Instale as dependências utilizando Bundler e Yarn:
 
-'bundle && yarn'
+`bundle && yarn`
 
 Para inicializar o servidor:
-'rails s'
+`rails s`
 
 INICIALIZAÇÃO
 
