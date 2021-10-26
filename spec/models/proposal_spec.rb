@@ -63,15 +63,15 @@ describe Proposal do
                                 description: 'Pessoal da Campus Code',
                                 desired_skills: 'Esforçada, obstinada e cuidadosa',
                                 top_hourly_wage: 67,
-                                proposal_deadline: '22/01/2022',
+                                proposal_deadline: 10.days.from_now,
                                 remote: true,
                                 contractor: peter,
                                 freelancer_expertise: webdev)
       proposal = Proposal.create!(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
-                              hourly_wage: 32, weekly_hours: 12, expected_conclusion: '10/01/2022',
+                              hourly_wage: 32, weekly_hours: 12, expected_conclusion: 20.days.from_now,
                               project: desafios, freelancer: spongebob, contractor: peter)
       proposal2 = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma2',
-                              hourly_wage: 37, weekly_hours: 13, expected_conclusion: '10/01/2023',
+                              hourly_wage: 37, weekly_hours: 13, expected_conclusion: 1.month.from_now,
                               project: desafios, freelancer: spongebob, contractor: peter)
 
       proposal2.valid?
@@ -90,15 +90,15 @@ describe Proposal do
                                 description: 'Pessoal da Campus Code',
                                 desired_skills: 'Esforçada, obstinada e cuidadosa',
                                 top_hourly_wage: 67,
-                                proposal_deadline: '22/01/2022',
+                                proposal_deadline: 1.week.from_now,
                                 remote: true,
                                 contractor: peter,
                                 freelancer_expertise: webdev)
       proposal = Proposal.create!(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
-                              hourly_wage: 32, weekly_hours: 12, expected_conclusion: '10/01/2022',
+                              hourly_wage: 32, weekly_hours: 12, expected_conclusion: 5.weeks.from_now,
                               project: desafios, freelancer: spongebob, contractor: peter, archived: true)
       proposal2 = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma2',
-                              hourly_wage: 37, weekly_hours: 13, expected_conclusion: '10/01/2023',
+                              hourly_wage: 37, weekly_hours: 13, expected_conclusion: 56.weeks.from_now,
                               project: desafios, freelancer: spongebob, contractor: peter)
 
       proposal2.valid?
@@ -177,6 +177,79 @@ describe Proposal do
       proposal.valid?
       
       expect(proposal.errors.full_messages_for(:hourly_wage)).to include 'Valor/hora não pode exceder o máximo preço por hora do projeto'
+    end
+  end
+
+  context 'custom validation on expected conclusion' do
+    it 'cannot be in the past' do
+      peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      spongebob = Freelancer.create!(email: 'spongebob@hub.com', password: '123123', full_name: 'Sponge Bob SquarePants',
+                                    social_name: 'Sponge Bob', birth_date: '14/07/1986', degree: 'Cooking',
+                                    description: 'Já trabalhei em águas internacionais, lido bem sob pressão e guardo bem os segredos',
+                                    experience: 'Já trabalhei como chef no Siri Cascudo', freelancer_expertise: webdev)
+      desafios = Project.create!(title: 'Plataforma de desafios de programação',
+                                description: 'Pessoal da Campus Code',
+                                desired_skills: 'Esforçada, obstinada e cuidadosa',
+                                top_hourly_wage: 37,
+                                proposal_deadline: '22/01/2022',
+                                remote: true,
+                                contractor: peter,
+                                freelancer_expertise: webdev)
+      proposal = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
+                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 1.day.ago,
+                                  project: desafios, freelancer: spongebob)
+
+      proposal.valid?
+
+      expect(proposal.errors.full_messages_for(:expected_conclusion)).to include 'Conclusão esperada não pode ser no passado'
+    end
+
+    it 'cannot be earlier than projects proposal deadline' do
+      peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      spongebob = Freelancer.create!(email: 'spongebob@hub.com', password: '123123', full_name: 'Sponge Bob SquarePants',
+                                    social_name: 'Sponge Bob', birth_date: '14/07/1986', degree: 'Cooking',
+                                    description: 'Já trabalhei em águas internacionais, lido bem sob pressão e guardo bem os segredos',
+                                    experience: 'Já trabalhei como chef no Siri Cascudo', freelancer_expertise: webdev)
+      desafios = Project.create!(title: 'Plataforma de desafios de programação',
+                                description: 'Pessoal da Campus Code',
+                                desired_skills: 'Esforçada, obstinada e cuidadosa',
+                                top_hourly_wage: 37,
+                                proposal_deadline: 5.days.from_now,
+                                remote: true,
+                                contractor: peter,
+                                freelancer_expertise: webdev)
+      proposal = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
+                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 4.days.from_now,
+                                  project: desafios, freelancer: spongebob)
+
+      proposal.valid?
+
+      expect(proposal.errors.full_messages_for(:expected_conclusion)).to include 'Conclusão esperada não pode ser antes do prazo de submissão final do projeto'
+    end
+    it 'cannot be on the same day of project proposal deadline' do
+      peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
+      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      spongebob = Freelancer.create!(email: 'spongebob@hub.com', password: '123123', full_name: 'Sponge Bob SquarePants',
+                                    social_name: 'Sponge Bob', birth_date: '14/07/1986', degree: 'Cooking',
+                                    description: 'Já trabalhei em águas internacionais, lido bem sob pressão e guardo bem os segredos',
+                                    experience: 'Já trabalhei como chef no Siri Cascudo', freelancer_expertise: webdev)
+      desafios = Project.create!(title: 'Plataforma de desafios de programação',
+                                description: 'Pessoal da Campus Code',
+                                desired_skills: 'Esforçada, obstinada e cuidadosa',
+                                top_hourly_wage: 37,
+                                proposal_deadline: 5.days.from_now,
+                                remote: true,
+                                contractor: peter,
+                                freelancer_expertise: webdev)
+      proposal = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
+                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 5.days.from_now,
+                                  project: desafios, freelancer: spongebob)
+
+      proposal.valid?
+
+      expect(proposal.errors.full_messages_for(:expected_conclusion)).to include 'Conclusão esperada não pode ser no mesmo dia do prazo de submissão final do projeto'
     end
   end
 end

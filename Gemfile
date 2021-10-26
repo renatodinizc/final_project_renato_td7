@@ -21,7 +21,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'simplecov', require: false
-  gem 'shoulda-matchers', '~> 5.0'
+
 end
 
 group :development do

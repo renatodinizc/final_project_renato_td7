@@ -36,7 +36,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
         <br />
         Carga horária semanal: <%= proposal.weekly_hours %> horas
         <br />
-        Conclusão do projeto em: <%= l proposal.expected_conclusion %>
+        Conclusão do projeto em: <%= I18n.l proposal.expected_conclusion %>
         <br />
         Valor/hora: <%= number_to_currency(proposal.hourly_wage) %>
         <br />
