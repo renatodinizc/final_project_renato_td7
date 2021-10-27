@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
   resources :projects, shallow: true do
     get 'search', on: :collection
+    get 'close', on: :member
     resources :proposals do
       post 'accept', on: :member
       post 'deny', on: :member
+      post 'forfeit', on: :member
       post 'archive', on: :member
       resource :feedback, only: [:new, :create]
       resources :chats do

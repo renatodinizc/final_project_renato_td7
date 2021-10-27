@@ -4,6 +4,8 @@ class Project < ApplicationRecord
   has_many :proposals
   has_many :chats, through: :proposals
 
+  enum status: {opened: 0, closed: 10, finished: 20}
+
   validates :title, :description, :desired_skills, :top_hourly_wage, :proposal_deadline, presence: true
 
   validate :positive_top_hourly_wage

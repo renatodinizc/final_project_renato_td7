@@ -5,6 +5,7 @@ class FreelancersController < ApplicationController
   def show
     if freelancer_signed_in?
       @freelancer = current_freelancer
+      @projects = @freelancer.projects.where(status: 'finished')
     elsif contractor_signed_in?
       @freelancer = Freelancer.find(params[:id])
     end

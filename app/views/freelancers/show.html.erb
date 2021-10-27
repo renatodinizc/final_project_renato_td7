@@ -19,6 +19,6 @@ Descrição: <%= @freelancer.description %>
 Experiência: <%= @freelancer.experience %>
 </p>
 
-<h3> Meus projetos: </h3>
+<h3> Meus projetos realizados: </h3>
 
-<h3> Minhas propostas: </h3>
+<%= render 'projects/summary_list_of_projects', projects: @projects %>

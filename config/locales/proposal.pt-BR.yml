@@ -8,6 +8,7 @@ pt-BR:
         pending_approval: 'Pendente'
         proposal_approved: 'Aprovada'
         proposal_denied: 'Recusada'
+        proposal_forfeit: 'Desistência'
       proposal:
         proposal_description: 'Justificativa'
         hourly_wage: 'Valor/hora'

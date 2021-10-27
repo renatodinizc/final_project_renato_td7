@@ -4,6 +4,10 @@ pt-BR:
     models:
       project: 'Projeto'
     attributes:
+      project/status:
+        opened: 'Aberto'
+        closed: 'Fechado'
+        finished: 'Finalizado'
       project:
         title: 'Título'
         description: 'Descrição'

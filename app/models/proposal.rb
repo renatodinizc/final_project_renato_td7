@@ -7,7 +7,7 @@ class Proposal < ApplicationRecord
 
   validates :freelancer_id, uniqueness: {scope: :project_id, conditions: -> {where(archived: false)}, message: 'não pode enviar mais de uma proposta simultânea para mesmo projeto'}
   validates :proposal_description, :hourly_wage, :weekly_hours, :expected_conclusion, presence: true
-  enum status: {pending_approval: 0, proposal_approved: 10, proposal_denied: 20}
+  enum status: {pending_approval: 0, proposal_approved: 10, proposal_denied: 20, proposal_forfeit: 30}
   validate :check_for_top_wage, :check_validity_of_expected_conclusion
 
   #validates :denial_feedback, presence: true, length: {minimum: 10}, on: :feedback_submission

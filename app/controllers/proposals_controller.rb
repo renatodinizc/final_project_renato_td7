@@ -1,6 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :authenticate_contractor!, :check_proposal_contractor, only: [:accept, :deny]
-  before_action :authenticate_freelancer!, only: [:create, :archive]
+  before_action :authenticate_freelancer!, only: [:create, :archive, :forfeit]
   before_action :authenticate_any!, :identify_current_account, :is_proposal_accepted, only: [:show]
 
   def show
@@ -46,6 +46,18 @@ class ProposalsController < ApplicationController
   def deny
     @proposal.proposal_denied!
     redirect_to new_proposal_feedback_path(@proposal) 
+  end
+
+  def forfeit
+    @proposal = Proposal.find(params[:id])
+    if (3.days.ago..Date.today).cover?(@proposal.updated_at.to_date)
+      @proposal.proposal_forfeit!
+      redirect_to new_proposal_feedback_path(@proposal) 
+    else
+      flash[:notice] = 'Você não pode desistir de uma proposta que foi aprovada a mais de três dias!'
+      redirect_to project_path @proposal.project
+    end
+      
   end
 
   private

@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_contractor!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_contractor!, only: [:new, :create, :edit, :update, :close, :destroy]
   before_action :authenticate_any!, only: [:search]
-  before_action :check_project_contractor, only: [:edit, :update, :destroy]
+  before_action :check_project_contractor, only: [:edit, :update, :close, :destroy]
 
   def show
     @project = Project.find(params[:id])
@@ -50,10 +50,19 @@ class ProjectsController < ApplicationController
     # Investigar melhor o having caso dê tempo
     # https://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-having 
 
-    @projects = Project.where("title LIKE ?", "%#{get_search_input}%").
-                or(Project.where("description LIKE ?", "%#{get_search_input}%"))
+    @projects = (Project.where("title LIKE ?", "%#{get_search_input}%").and(Project.where(status: 'opened'))).
+                or((Project.where("description LIKE ?", "%#{get_search_input}%")).and(Project.where(status: 'opened')))
   end
 
+  def close
+    @project.closed!
+    @proposals = Proposal.where(project: @project)
+    @proposals.each do |proposal|
+      proposal.proposal_denied!
+      Feedback.create(proposal: proposal, body: 'Contratante fechou projeto para recebimento de novas propostas')
+    end
+    redirect_to project_path(@project)
+  end
 
   private
 

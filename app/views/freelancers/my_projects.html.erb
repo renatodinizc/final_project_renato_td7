@@ -5,5 +5,13 @@
   <br />
   Descrição: <%= proposal.project.description %>
   <br />
+  Status do projeto: <%= Project.human_attribute_name("status.#{proposal.project.status}") %>
+  <br />
+  Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}")%>
+  <br />
+  <% if proposal.feedback %>
+    Motivo: <%= proposal.feedback.body %>
+    <br />
+  <% end %>
   <br />
 <% end %>

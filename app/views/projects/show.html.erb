@@ -1,5 +1,8 @@
 <h1> <%= @project.title %> </h1>
 <p>
+<% if Project.human_attribute_name("status.#{@project.status}") == 'Fechado'%>
+    RECEBIMENTO DE PROPOSTAS PARA PROJETO ENCERRADAS
+<% end %>
 <br />
 Descrição do projeto: <%= @project.description %>
 <br />
@@ -23,6 +26,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
     <br />
     <%= link_to 'Remover projeto', @project, method: :delete, data: { confirm: 'Você tem certeza?'} %>
     <br />
+    <%= link_to 'Encerrar inscrições', close_project_path(@project) %>
     <br />
 
     <h3> Propostas recebidas: </h3>
@@ -57,27 +61,28 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
 
 
 <% elsif freelancer_signed_in? %>
-    <h3> Adicione sua proposta de trabalho! </h3>
-    <%= form_with model: @proposal, url: project_proposals_path(@project) do |f| %>
-        <%= @proposal.errors.full_messages_for(:freelancer_id)[0] %>
-        <br />
-        <%= f.label :proposal_description %>
-        <%= f.text_field :proposal_description %>
-        <%= @proposal.errors.full_messages_for(:proposal_description)[0] %>
-        <br />
-        <%= f.label :hourly_wage %>
-        <%= f.number_field :hourly_wage %>
-        <%= @proposal.errors.full_messages_for(:hourly_wage)[0] %>
-        <br />
-        <%= f.label :weekly_hours %>
-        <%= f.number_field :weekly_hours %>
-        <%= @proposal.errors.full_messages_for(:weekly_hours)[0] %>
-        <br />
-        <%= f.label :expected_conclusion %>
-        <%= f.date_field :expected_conclusion %>
-        <%= @proposal.errors.full_messages_for(:expected_conclusion)[0] %>
-        <%= f.submit 'Enviar proposta', class: "btn btn-primary" %>
-
+    <% if Project.human_attribute_name("status.#{@project.status}") == 'Aberto' %>
+        <h3> Adicione sua proposta de trabalho! </h3>
+        <%= form_with model: @proposal, url: project_proposals_path(@project) do |f| %>
+            <%= @proposal.errors.full_messages_for(:freelancer_id)[0] %>
+            <br />
+            <%= f.label :proposal_description %>
+            <%= f.text_field :proposal_description %>
+            <%= @proposal.errors.full_messages_for(:proposal_description)[0] %>
+            <br />
+            <%= f.label :hourly_wage %>
+            <%= f.number_field :hourly_wage %>
+            <%= @proposal.errors.full_messages_for(:hourly_wage)[0] %>
+            <br />
+            <%= f.label :weekly_hours %>
+            <%= f.number_field :weekly_hours %>
+            <%= @proposal.errors.full_messages_for(:weekly_hours)[0] %>
+            <br />
+            <%= f.label :expected_conclusion %>
+            <%= f.date_field :expected_conclusion %>
+            <%= @proposal.errors.full_messages_for(:expected_conclusion)[0] %>
+            <%= f.submit 'Enviar proposta', class: "btn btn-primary" %>
+        <% end %>
     <% end %>
 
     <h4> Suas propostas: </h4>
@@ -95,14 +100,18 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                 Status da proposta: <%= Proposal.human_attribute_name("status.#{proposal.status}") %>
                 <br />
                 <% if Proposal.human_attribute_name("status.#{proposal.status}") == 'Pendente' %>
-                    <%= link_to 'Desistir de proposta', archive_proposal_path(proposal), method: :post, data: { confirm: 'Você tem certeza?'}%>
+                    <%= link_to 'Desistir de proposta', archive_proposal_path(proposal), method: :post, data: { confirm: 'Você tem certeza?'} %>
                     <br />
                 <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Recusada' %>
-                      Feedback de recusa: 
+                      Motivo do contratante: <%= proposal.feedback.body %>
                       <br />
-                <% else %>
-                 <%= link_to 'Ir para chat', proposal_path(proposal) %>
+                <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Aprovada' %>
+                    <%= link_to 'Ir para chat', proposal_path(proposal) %>
+                    &emsp;
+                    <%= link_to 'Desistir de proposta', forfeit_proposal_path(proposal), method: :post %>
                  <br />
+                 <% else %>
+                    Motivo da desistência: <%= proposal.feedback.body %>
                 <% end %>
                 <br />
             <% end %>

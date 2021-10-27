@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_122805) do
+ActiveRecord::Schema.define(version: 2021_10_27_114710) do
 
   create_table "chats", force: :cascade do |t|
     t.string "commenter"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_122805) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "contractor_id", null: false
     t.integer "freelancer_expertise_id", null: false
+    t.integer "status", default: 0
     t.index ["contractor_id"], name: "index_projects_on_contractor_id"
     t.index ["freelancer_expertise_id"], name: "index_projects_on_freelancer_expertise_id"
   end

@@ -141,6 +141,6 @@ describe 'Contractor cannot, unless authenticated,' do
 
     get '/proposals/1/feedback/new'
 
-    expect(response).to redirect_to(new_contractor_session_path)
+    expect(response).to redirect_to(new_contractor_session_path).or redirect_to(new_freelancer_session_path)
   end
 end
