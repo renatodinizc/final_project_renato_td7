@@ -76,7 +76,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
         <%= f.label :expected_conclusion %>
         <%= f.date_field :expected_conclusion %>
         <%= @proposal.errors.full_messages_for(:expected_conclusion)[0] %>
-        <%= f.submit 'Enviar proposta' %>
+        <%= f.submit 'Enviar proposta', class: "btn btn-primary" %>
 
     <% end %>
 

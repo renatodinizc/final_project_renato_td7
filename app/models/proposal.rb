@@ -23,12 +23,13 @@ class Proposal < ApplicationRecord
   def check_validity_of_expected_conclusion
     if expected_conclusion && self.expected_conclusion < Date.today
       errors.add(:expected_conclusion, 'não pode ser no passado')
-    elsif expected_conclusion && self.expected_conclusion < project.proposal_deadline
-      errors.add(:expected_conclusion, 'não pode ser antes do prazo de submissão final do projeto')
-    elsif expected_conclusion && self.expected_conclusion == project.proposal_deadline
-      errors.add(:expected_conclusion, 'não pode ser no mesmo dia do prazo de submissão final do projeto')
     end
 
+    if expected_conclusion && self.expected_conclusion == project.proposal_deadline
+      errors.add(:expected_conclusion, 'não pode ser no mesmo dia do prazo de submissão final do projeto')
+    elsif expected_conclusion && self.expected_conclusion < project.proposal_deadline
+      errors.add(:expected_conclusion, 'não pode ser antes do prazo de submissão final do projeto')
+    end
   end
 
 end

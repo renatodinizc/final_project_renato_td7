@@ -6,8 +6,8 @@ describe 'Contractor creates account at plataform' do
     click_on 'Entrar como contratante'
     click_on 'Sign up'
     fill_in 'Email', with: 'foo@bar.com'
-    fill_in 'Password', with: '123123'
-    fill_in 'Password confirmation', with: '123123'
+    fill_in 'Senha', with: '123123'
+    fill_in 'Confirmar senha', with: '123123'
     click_on 'Sign up'
 
     expect(page).to have_content 'Você está logado como contratante' 
@@ -19,8 +19,8 @@ describe 'Contractor creates account at plataform' do
     click_on 'Entrar como contratante'
     click_on 'Sign up'
     fill_in 'Email', with: 'foo@bar.com'
-    fill_in 'Password', with: '123123'
-    fill_in 'Password confirmation', with: '123456'
+    fill_in 'Senha', with: '123123'
+    fill_in 'Confirmar senha', with: '123456'
     click_on 'Sign up'
 
     expect(page).not_to have_content 'Você esta logado como contratante. Email: foo@bar.com'

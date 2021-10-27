@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      contractor: 'Contratante'
+    attributes:
+      contractor:
+        password: 'Senha'
+        password_confirmation: 'Confirmar senha'

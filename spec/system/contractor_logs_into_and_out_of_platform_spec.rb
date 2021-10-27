@@ -7,7 +7,7 @@ describe 'Contractor logs' do
       visit root_path
       click_on 'Entrar como contratante'
       fill_in 'Email', with: 'foo@bar.com'
-      fill_in 'Password', with: '123123'
+      fill_in 'Senha', with: '123123'
       click_on 'Log in'
 
       expect(page).to have_content 'foo@bar.com'

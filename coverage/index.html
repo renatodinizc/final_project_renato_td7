@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-10-26T14:44:27-03:00">2021-10-26T14:44:27-03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-10-26T21:36:25-03:00">2021-10-26T21:36:25-03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -30,7 +30,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.65
+         1.66
        </span>
     </span> hits/line
     )
@@ -43,8 +43,8 @@
   </div>
 
   <div class="t-line-summary">
-    <b>1340</b> relevant lines,
-    <span class="green"><b>1321</b> lines covered</span> and
+    <b>1336</b> relevant lines,
+    <span class="green"><b>1317</b> lines covered</span> and
     <span class="red"><b>19</b> lines missed. </span>
     (<span class="green">
   98.58%
@@ -249,11 +249,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#52c691c38ccc8bccd1626cad18da8b41daa5b0a4" class="src_link" title="app/models/proposal.rb">app/models/proposal.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">34</td>
+            <td class="cell--number">35</td>
             <td class="cell--number">21</td>
             <td class="cell--number">21</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">12.81</td>
+            <td class="cell--number">13.10</td>
             
           </tr>
         
@@ -523,12 +523,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#b51026adc15c865df6c032efe3c6e8b5f877a29c" class="src_link" title="spec/rails_helper.rb">spec/rails_helper.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">90.48 %</td>
-            <td class="cell--number">83</td>
-            <td class="cell--number">21</td>
-            <td class="cell--number">19</td>
+            <td class="yellow strong cell--number t-file__coverage">88.24 %</td>
+            <td class="cell--number">77</td>
+            <td class="cell--number">17</td>
+            <td class="cell--number">15</td>
             <td class="cell--number">2</td>
-            <td class="cell--number">3.24</td>
+            <td class="cell--number">3.76</td>
             
           </tr>
         
@@ -5450,35 +5450,35 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="26">
-            <span class="hits">49</span>
+          <li class="never" data-hits="" data-linenumber="26">
+            
             
 
             
 
-            <code class="ruby">    elsif expected_conclusion &amp;&amp; self.expected_conclusion &lt; project.proposal_deadline</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="27">
-            <span class="hits">4</span>
+          <li class="never" data-hits="" data-linenumber="27">
+            
             
 
             
 
-            <code class="ruby">      errors.add(:expected_conclusion, &#39;não pode ser antes do prazo de submissão final do projeto&#39;)</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="45" data-linenumber="28">
-            <span class="hits">45</span>
+          <li class="covered" data-hits="50" data-linenumber="28">
+            <span class="hits">50</span>
             
 
             
 
-            <code class="ruby">    elsif expected_conclusion &amp;&amp; self.expected_conclusion == project.proposal_deadline</code>
+            <code class="ruby">    if expected_conclusion &amp;&amp; self.expected_conclusion == project.proposal_deadline</code>
           </li>
         </div>
       
@@ -5494,24 +5494,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="30">
-            
-            
-
+          <li class="covered" data-hits="49" data-linenumber="30">
+            <span class="hits">49</span>
             
 
-            <code class="ruby">    end</code>
+            
+
+            <code class="ruby">    elsif expected_conclusion &amp;&amp; self.expected_conclusion &lt; project.proposal_deadline</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="31">
-            
-            
-
+          <li class="covered" data-hits="5" data-linenumber="31">
+            <span class="hits">5</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">      errors.add(:expected_conclusion, &#39;não pode ser antes do prazo de submissão final do projeto&#39;)</code>
           </li>
         </div>
       
@@ -5522,7 +5522,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -5533,12 +5533,23 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="34">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="35">
             
             
 
@@ -16364,7 +16375,7 @@
 
             
 
-            <code class="ruby">                                proposal_deadline: &#39;22/01/2022&#39;,</code>
+            <code class="ruby">                                proposal_deadline: 1.day.from_now,</code>
           </li>
         </div>
       
@@ -16419,7 +16430,7 @@
 
             
 
-            <code class="ruby">                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 1.day.ago,</code>
+            <code class="ruby">                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 2.days.ago,</code>
           </li>
         </div>
       
@@ -17037,8 +17048,8 @@
   <div class="header">
     <h3>spec/rails_helper.rb</h3>
     <h4>
-      <span class="green">
-  90.48%
+      <span class="yellow">
+  88.24%
 </span>
 
       lines covered
@@ -17047,8 +17058,8 @@
     
 
     <div class="t-line-summary">
-      <b>21</b> relevant lines.
-      <span class="green"><b>19</b> lines covered</span> and
+      <b>17</b> relevant lines.
+      <span class="green"><b>15</b> lines covered</span> and
       <span class="red"><b>2</b> lines missed.</span>
     </div>
 
@@ -17874,73 +17885,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="75">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  Shoulda::Matchers.configure do |config|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="76">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    config.integrate do |with|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="77">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      with.test_framework :rspec</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="78">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      with.library :rails</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="79">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="80">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="81">
+          <li class="never" data-hits="" data-linenumber="75">
             
             
 
@@ -17951,7 +17896,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="82">
+          <li class="never" data-hits="" data-linenumber="76">
             
             
 
@@ -17962,7 +17907,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="83">
+          <li class="never" data-hits="" data-linenumber="77">
             
             
 
@@ -23984,7 +23929,7 @@
 
             
 
-            <code class="ruby">    fill_in &#39;Password&#39;, with: &#39;123123&#39;</code>
+            <code class="ruby">    fill_in &#39;Senha&#39;, with: &#39;123123&#39;</code>
           </li>
         </div>
       
@@ -23995,7 +23940,7 @@
 
             
 
-            <code class="ruby">    fill_in &#39;Password confirmation&#39;, with: &#39;123123&#39;</code>
+            <code class="ruby">    fill_in &#39;Confirmar senha&#39;, with: &#39;123123&#39;</code>
           </li>
         </div>
       
@@ -24127,7 +24072,7 @@
 
             
 
-            <code class="ruby">    fill_in &#39;Password&#39;, with: &#39;123123&#39;</code>
+            <code class="ruby">    fill_in &#39;Senha&#39;, with: &#39;123123&#39;</code>
           </li>
         </div>
       
@@ -24138,7 +24083,7 @@
 
             
 
-            <code class="ruby">    fill_in &#39;Password confirmation&#39;, with: &#39;123456&#39;</code>
+            <code class="ruby">    fill_in &#39;Confirmar senha&#39;, with: &#39;123456&#39;</code>
           </li>
         </div>
       
@@ -26275,7 +26220,7 @@
 
             
 
-            <code class="ruby">      fill_in &#39;Password&#39;, with: &#39;123123&#39;</code>
+            <code class="ruby">      fill_in &#39;Senha&#39;, with: &#39;123123&#39;</code>
           </li>
         </div>
       

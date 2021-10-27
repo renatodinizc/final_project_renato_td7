@@ -101,8 +101,6 @@ O projeto conta com um arquivo de seeds recheado com os models principais para e
 
 * SimpleCov - code coverage for Ruby
 
-* Shoulda matchers - provides RSpec- and Minitest-compatible one-liners to test common Rails functionality
-
 ## Peculiaridades
 
 Ao realizar signup com Freelancer, é necessário atualizar a página (F5) para seguir com formulário de cadastro.

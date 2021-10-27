@@ -192,12 +192,12 @@ describe Proposal do
                                 description: 'Pessoal da Campus Code',
                                 desired_skills: 'Esforçada, obstinada e cuidadosa',
                                 top_hourly_wage: 37,
-                                proposal_deadline: '22/01/2022',
+                                proposal_deadline: 1.day.from_now,
                                 remote: true,
                                 contractor: peter,
                                 freelancer_expertise: webdev)
       proposal = Proposal.new(proposal_description: 'Sou ex-aluno da Campus Code e quero contribuir com a plataforma',
-                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 1.day.ago,
+                                  hourly_wage: 37.01, weekly_hours: 12, expected_conclusion: 2.days.ago,
                                   project: desafios, freelancer: spongebob)
 
       proposal.valid?
