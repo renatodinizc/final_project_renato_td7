@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :projects, shallow: true do
     get 'search', on: :collection
     get 'close', on: :member
+    get 'finish', on: :member
     resources :proposals do
       post 'accept', on: :member
       post 'deny', on: :member

@@ -1,7 +1,7 @@
 class ProposalsController < ApplicationController
   before_action :authenticate_contractor!, :check_proposal_contractor, only: [:accept, :deny]
   before_action :authenticate_freelancer!, only: [:create, :archive, :forfeit]
-  before_action :authenticate_any!, :identify_current_account, :is_proposal_accepted, only: [:show]
+  before_action :authenticate_any!, :identify_current_account, :is_proposal_accepted, only: [:show, :team]
 
   def show
     #@proposal = Proposal.find(params[:id])
@@ -57,7 +57,6 @@ class ProposalsController < ApplicationController
       flash[:notice] = 'Você não pode desistir de uma proposta que foi aprovada a mais de três dias!'
       redirect_to project_path @proposal.project
     end
-      
   end
 
   private

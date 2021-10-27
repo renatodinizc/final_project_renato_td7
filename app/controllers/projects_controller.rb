@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_contractor!, only: [:new, :create, :edit, :update, :close, :destroy]
+  before_action :authenticate_contractor!, only: [:new, :create, :edit, :update, :close, :finish, :destroy]
   before_action :authenticate_any!, only: [:search]
-  before_action :check_project_contractor, only: [:edit, :update, :close, :destroy]
+  before_action :check_project_contractor, only: [:edit, :update, :close, :finish, :destroy]
 
   def show
     @project = Project.find(params[:id])
@@ -64,6 +64,11 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def finish
+    @project.finished!
+    redirect_to project_path(@project)
+  end
+
   private
 
   def check_project_contractor
@@ -73,5 +78,4 @@ class ProjectsController < ApplicationController
       redirect_to project_path @project
     end
   end
-
 end

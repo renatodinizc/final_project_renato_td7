@@ -28,6 +28,25 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
     <br />
     <%= link_to 'Encerrar inscrições', close_project_path(@project) %>
     <br />
+    <%= link_to 'Fechar projeto', finish_project_path(@project) %>
+    <% if @project.finished? %>
+        PROJETO ENCERRADO
+    <% end %>
+
+    <% if @proposals.where(status: 'proposal_approved').any? %>
+        <h4> Time de freelancers contratados para o projeto: </h4>
+            <% @proposals.where(status: 'proposal_approved').each do |p| %>
+                Nome social: <%= p.freelancer.social_name %>
+                <br />
+                Descrição do profissional: <%= p.freelancer.description %>
+                <br />
+                Justificativa para o projeto: <%= p.proposal_description %>
+                <br />
+                Área de atuação: <%= p.freelancer.freelancer_expertise.title %>
+                <br />
+                <br />
+            <% end %>
+        <% end %>
 
     <h3> Propostas recebidas: </h3>
 
@@ -109,7 +128,18 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                     <%= link_to 'Ir para chat', proposal_path(proposal) %>
                     &emsp;
                     <%= link_to 'Desistir de proposta', forfeit_proposal_path(proposal), method: :post %>
-                 <br />
+                    <h4> Time do projeto: </h4>
+                    <% @proposals.where(status: 'proposal_approved').each do |p| %>
+                        Nome social: <%= p.freelancer.social_name %>
+                        <br />
+                        Descrição do profissional: <%= p.freelancer.description %>
+                        <br />
+                        Justificativa para o projeto: <%= p.proposal_description %>
+                        <br />
+                        Área de atuação: <%= p.freelancer.freelancer_expertise.title %>
+                        <br />
+                        <br />
+                    <% end %>
                  <% else %>
                     Motivo da desistência: <%= proposal.feedback.body %>
                 <% end %>
