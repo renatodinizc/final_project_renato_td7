@@ -36,6 +36,10 @@ O projeto conta com outros models secundários que adicionam opções importante
 * Caso Contractor aceite a Proposal, permite-se acesso ao Chat entre as duas partes.
 * Chat permite acesso exclusivo ao Contractor criador do projeto e ao Freelancer criador da Proposal.
 * Chat permite troca de mensagens, salvando o remetente e armazenando junto da mensagem correspondente para a exibição.
+* Freelancer pode visualizar time de projeto após ter sua proposta aceita
+* Contractor pode visualizar time de projeto
+* Contractor pode restringir o Project de receber novas propostas
+* Contractor pode fechar o projeto após sua conclusão
 
 ## Instalação e inicialização do projeto
 
@@ -67,25 +71,25 @@ Para inicializar o servidor:
 
 INICIALIZAÇÃO
 
-O projeto conta com um arquivo de seeds recheado com os models principais para execução imediata da plataforma.
+O projeto conta com um arquivo de seeds populado com os models principais para execução imediata da plataforma.
 * Duas contas de Contractors
-  • email: renato@hub.com password: 123123
-  • email: joao@hub.com password: 123123
+  - email: renato@hub.com | password: 123123
+  - email: joao@hub.com | password: 123123
 * Três tipos de FreelancerExpertise
-  • Desenvolvedor web
-  • UX
-  • Designer
+  - Desenvolvedor web
+  - UX
+  - Designer
 * Três contas de Freelancers
-  • email: sandycheecks@hub.com password: 123123
-  • email: spongebob@hub.com password: 123123
-  • email: squidward@hub.com password: 123123
+  - email: sandycheecks@hub.com | password: 123123
+  - email: spongebob@hub.com | password: 123123
+  - email: squidward@hub.com | password: 123123
 * Três Projects cadastrados
-  • Website para grupo de estudos
-  • Artes impressas para palestra
-  • Plataforma de desafios de programação
+  - Website para grupo de estudos
+  - Artes impressas para palestra
+  - Plataforma de desafios de programação
 * Duas Proposals realizadas
-  • Proposal de sandycheecks@hub.com para 'Website para grupo de estudos'
-  • Proposal de spongebob@hub.com para 'Website para grupo de estudos'
+  - Proposal de sandycheecks@hub.com para 'Website para grupo de estudos'
+  - Proposal de spongebob@hub.com para 'Website para grupo de estudos'
 
 # Gems, dependências e versões
 
@@ -100,6 +104,8 @@ O projeto conta com um arquivo de seeds recheado com os models principais para e
 * Database initialization Sqlite3
 
 * SimpleCov - code coverage for Ruby
+
+* Bootstrap 5
 
 ## Peculiaridades
 
