@@ -44,7 +44,7 @@ describe 'Freelancer forfeits proposal' do
                               proposal_deadline: 10.days.from_now, remote: true, contractor: peter, freelancer_expertise: webdev)
     proposal = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
                                 hourly_wage: 8, weekly_hours: 10, expected_conclusion: 20.days.from_now,
-                                project: website, freelancer: spongebob, contractor: peter, status: 'proposal_approved', created_at: Date.today )
+                                project: website, freelancer: spongebob, contractor: peter, status: 'proposal_approved', created_at: 1.day.ago )
 
     login_as spongebob, scope: :freelancer
     visit root_path

@@ -122,8 +122,8 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                     <%= link_to 'Desistir de proposta', archive_proposal_path(proposal), method: :post, data: { confirm: 'Você tem certeza?'} %>
                     <br />
                 <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Recusada' %>
-                      Motivo do contratante: <%= proposal.feedback.body %>
-                      <br />
+                    Motivo: <%= proposal.feedback.body %>
+                    <br />
                 <% elsif Proposal.human_attribute_name("status.#{proposal.status}") == 'Aprovada' %>
                     <%= link_to 'Ir para chat', proposal_path(proposal) %>
                     &emsp;
@@ -140,7 +140,7 @@ Data limite para envio de propostas: <%= l @project.proposal_deadline %>
                         <br />
                         <br />
                     <% end %>
-                 <% else %>
+                <% else %>
                     Motivo da desistência: <%= proposal.feedback.body %>
                 <% end %>
                 <br />
