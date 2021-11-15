@@ -2,89 +2,41 @@ require 'rails_helper'
 
 describe 'Freelancer makes proposal to project' do
   it 'successfully' do
-    peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
-    webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
-    jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
-                              social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
-                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
-                              freelancer_expertise: webdev)
-    Project.create!(title: 'Plataforma de desafios de programação',
-                    description: 'Pessoal da Campus Code',
-                    desired_skills: 'Esforçada, obstinada e cuidadosa',
-                    top_hourly_wage: 37,
-                    proposal_deadline: '22/01/2022',
-                    remote: true,
-                    contractor: peter,
-                    freelancer_expertise: webdev)
+    spongebob = create(:freelancer)
+    create(:project, title: 'Plataforma de desafios de programação')
 
-    login_as jane, scope: :freelancer
+    login_as spongebob, scope: :freelancer
     visit root_path
     click_on 'Plataforma de desafios de programação'
-    fill_in 'Justificativa', with: 'Fui aluno da turma 7 do TreinaDev e quero contribuir com o projeto'
+    fill_in 'Justificativa', with: 'Fui aluno do TD7 e quero contribuir com o projeto'
     fill_in 'Valor/hora', with: 14
     fill_in 'Horas semanais', with: 20
-    fill_in 'Conclusão esperada', with: '30/01/2022'
+    fill_in 'Conclusão esperada', with: 3.months.from_now
     click_on 'Enviar proposta'
 
     expect(page).to have_content 'Plataforma de desafios de programação'
     expect(page).to have_content 'Suas propostas:'
-    expect(page).to have_content 'Justificativa: Fui aluno da turma 7 do TreinaDev e quero contribuir com o projeto'
+    expect(page).to have_content 'Justificativa: Fui aluno do TD7 e quero contribuir com o projeto'
     expect(page).to have_content 'Valor/hora: R$ 14,00'
     expect(page).to have_content 'Carga horária semanal: 20 horas'
-    expect(page).to have_content 'Conclusão esperada: 30/01/2022'
+    expect(page).to have_content "Conclusão esperada: #{I18n.l 3.months.from_now.to_date}"
     expect(page).to have_content 'Status da proposta: Pendente'
-
   end
 
   it 'and access it through My projects menu' do
-    webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
-    designer = FreelancerExpertise.create!(title: 'Designer')
-    jane = Freelancer.create!(email: 'janedoe@hub.com', password: '123123', full_name: 'Jane Doe',
-                              social_name: 'Jane', birth_date: '20/04/1990', degree: 'Engenharia',
-                              description: 'Preciso de um freela', experience: 'Já trabalhei em muitos projetos',
-                              freelancer_expertise: webdev)
-    peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')                                 
-    website = Project.create!(title: 'Website para grupo de estudos',
-                    description: 'Grupo de estudos liberal de Salvador',
-                    desired_skills: 'Orientado a prazos e qualidade',
-                    top_hourly_wage: 78,
-                    proposal_deadline: '10/12/2021',
-                    remote: true,
-                    contractor: peter,
-                    freelancer_expertise: webdev)
-    artes = Project.create!(title: 'Artes impressas para palestra',
-                    description: 'Campeonato de debates na USP',
-                    desired_skills: 'Pessoa criativa e dinâmica',
-                    top_hourly_wage: 90,
-                    proposal_deadline: '08/06/2021',
-                    remote: false,
-                    contractor: peter,
-                    freelancer_expertise: designer)
-    desafios = Project.create!(title: 'Plataforma de desafios de programação',
-                    description: 'Pessoal da Campus Code',
-                    desired_skills: 'Esforçada, obstinada e cuidadosa',
-                    top_hourly_wage: 93,
-                    proposal_deadline: '22/01/2022',
-                    remote: true,
-                    contractor: peter,
-                    freelancer_expertise: webdev)
-    jane_proposal1 = Proposal.create!(proposal_description: 'Quero muito contribuir',
-                                      hourly_wage:76 , weekly_hours: 7, expected_conclusion: '22/01/2022',
-                                      project: website, freelancer: jane, contractor: peter)
-    jane_proposal2 = Proposal.create!(proposal_description: 'Quero ajudar a construir a liberdade',
-                                      hourly_wage: 40, weekly_hours: 10, expected_conclusion: '10/01/2022',
-                                      project: artes, freelancer: jane, contractor: peter) 
+    proposal1 = create(:proposal)
+    proposal2 = create(:proposal, freelancer: proposal1.freelancer)
+    proposal3 = create(:proposal)
 
-    login_as jane, scope: :freelancer                                 
+    login_as proposal1.freelancer, scope: :freelancer                                 
     visit root_path
     click_on 'Meus projetos'
 
     expect(page).to have_content 'Meus projetos:'
-    expect(page).to have_link 'Website para grupo de estudos'
-    expect(page).to have_content 'Descrição: Grupo de estudos liberal de Salvador'
-    expect(page).to have_link 'Artes impressas para palestra'
-    expect(page).to have_content 'Campeonato de debates na USP'
-    expect(page).not_to have_link 'Plataforma de desafios de programação'
-    expect(page).not_to have_content 'Pessoal da Campus Code'
+    expect(page).to have_link 'Project 1'
+    expect(page).to have_content 'Status da proposta: Pendente'
+    expect(page).to have_link 'Project 2'
+    expect(page).to have_content 'Status da proposta: Pendente'
+    expect(page).not_to have_link 'Project 3'
   end
 end

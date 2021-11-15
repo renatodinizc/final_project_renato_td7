@@ -1,55 +1,6 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/freelancer.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          179,
-          1,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/contractor.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null
-        ]
-      },
       "/Users/renato/RailsProjects/freelancing_hub/app/models/chat.rb": {
         "lines": [
           1,
@@ -95,7 +46,7 @@
           1,
           null,
           1,
-          90,
+          88,
           1,
           null,
           null,
@@ -114,7 +65,7 @@
           1,
           1,
           null,
-          60,
+          63,
           1,
           1,
           1,
@@ -124,19 +75,19 @@
           1,
           null,
           1,
-          59,
+          62,
           6,
           null,
           null,
           null,
           1,
-          59,
+          62,
           1,
           null,
           null,
-          59,
+          62,
           1,
-          58,
+          61,
           5,
           null,
           null,
@@ -152,10 +103,10 @@
           1,
           null,
           1,
-          45,
-          45,
-          45,
-          45,
+          46,
+          46,
+          46,
+          46,
           null,
           null,
           1,
@@ -250,9 +201,9 @@
           1,
           8,
           6,
-          0,
+          1,
           null,
-          6,
+          5,
           null,
           null,
           null,
@@ -391,7 +342,7 @@
           null,
           null,
           1,
-          5,
+          6,
           null,
           null,
           1,
@@ -445,8 +396,8 @@
           1,
           null,
           1,
-          9,
-          9,
+          10,
+          10,
           null,
           null,
           null
@@ -477,8 +428,63 @@
           null,
           null
         ]
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/application_record.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/contractor.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/freelancer.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1636030096
+    "timestamp": 1637008197
   }
 }

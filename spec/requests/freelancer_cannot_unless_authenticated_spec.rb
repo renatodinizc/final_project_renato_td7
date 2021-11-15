@@ -4,7 +4,8 @@ describe 'Freelancer cannot,' do
   context 'unless authenticated,' do
     it 'brute create new project proposal' do
       peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
-      webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      #webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
+      webdev = create(:freelancer_expertise, title: 'Desenvolvedor web')
       website = Project.create!(title: 'Website para grupo de estudos', description: 'Grupo de estudos liberal de Salvador',
         desired_skills: 'Orientado a prazos e qualidade', top_hourly_wage: 10,
         proposal_deadline: '10/12/2021', remote: true, contractor: peter, freelancer_expertise: webdev)

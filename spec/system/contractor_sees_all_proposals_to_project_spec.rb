@@ -1,6 +1,25 @@
 require 'rails_helper'
 
 describe 'Contractor sees all proposals to project' do
+  # EXCLUIR DEPOISSS
+  
+  it 'with FactoryBot sucessfully' do
+    proposal = create(:proposal)
+
+    login_as proposal.contractor, scope: :contractor
+    visit root_path
+    click_on 'Ver meu perfil'
+    click_on 'Project 1'
+
+    expect(page).to have_content 'Propostas recebidas:'
+    expect(page).to have_link 'Freelancer 1'
+    expect(page).to have_content 'Descrição do profissional: Much description'
+    expect(page).to have_content 'Justificativa para o projeto: Much justification'
+    expect(page).to have_content 'Valor/hora: R$ 42,00'
+    expect(page).to have_content 'Carga horária semanal: 9 horas'
+    expect(page).to have_content "Conclusão do projeto em: #{I18n.l 2.months.from_now.to_date}"
+  end
+
   it 'successfully' do
     peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
     webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
