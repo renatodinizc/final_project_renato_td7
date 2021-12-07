@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'Contractor logs' do
-  context 'into plataform' do 
+  context 'into plataform' do
     it 'successfully' do
-      foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+      Contractor.create!(email: 'foo@bar.com', password: '123123')
       visit root_path
       click_on 'Entrar como contratante'
       fill_in 'Email', with: 'foo@bar.com'
@@ -15,7 +15,7 @@ describe 'Contractor logs' do
       expect(page).not_to have_content 'Entrar como contratante'
     end
 
-  context 'into own profile'
+    context 'into own profile'
     it 'successfuly' do
       foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
 
@@ -56,13 +56,13 @@ describe 'Contractor logs' do
                       proposal_deadline: '22/01/2022',
                       remote: true,
                       contractor: bar,
-                      freelancer_expertise: webdev)                
-      
+                      freelancer_expertise: webdev)
+
       login_as foo, scope: :contractor
       visit root_path
       click_on 'Ver meu perfil'
 
-      expect(page).to have_css('h3',text: 'Meus projetos:')
+      expect(page).to have_css('h3', text: 'Meus projetos:')
       expect(page).to have_content('Website para grupo de estudos')
       expect(page).to have_content('Artes impressas para palestra')
       expect(page).not_to have_content('Plataforma de desafios de programação')
@@ -73,5 +73,4 @@ describe 'Contractor logs' do
     it 'successfuly' do
     end
   end
-
 end

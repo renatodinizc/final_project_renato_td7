@@ -33,23 +33,23 @@ describe 'Freelancer logs' do
     end
     it 'and sees message if there are no projects avaiable successfully' do
       spongebob = create(:freelancer)
-      
+
       login_as spongebob, scope: :freelancer
       visit root_path
 
       expect(page).to have_css('h1', text: 'Bem vindo ao FreelancingHUB')
       expect(page).to have_content 'Ainda não existem projetos cadastrados'
     end
-    
+
     it 'and searches for specific project by its title successfully' do
       spongebob = create(:freelancer)
       create(:project, title: 'Website para grupo de estudos')
       create(:project, title: 'Artes impressas para palestra')
-      create(:project, title: 'Plataforma de desafios de programação') 
+      create(:project, title: 'Plataforma de desafios de programação')
 
       login_as spongebob, scope: :freelancer
       visit root_path
-      fill_in 'Procurar projeto', with: 'Website' 
+      fill_in 'Procurar projeto', with: 'Website'
       click_on 'Procurar projeto'
 
       expect(page).to have_content 'Website para grupo de estudos'
@@ -60,15 +60,15 @@ describe 'Freelancer logs' do
     it 'and searches for specific project by its description sucessfully' do
       spongebob = create(:freelancer)
       create(:project, title: 'Website para grupo de estudos',
-            description: 'Grupo de estudos liberal de Salvador')
+                       description: 'Grupo de estudos liberal de Salvador')
       create(:project, title: 'Artes impressas para palestra',
-            description: 'Campeonato de debates na USP' )
+                       description: 'Campeonato de debates na USP')
       create(:project, title: 'Plataforma de desafios de programação',
-            description: 'Pessoal da Campus Code') 
+                       description: 'Pessoal da Campus Code')
 
       login_as spongebob, scope: :freelancer
       visit root_path
-      fill_in 'Procurar projeto', with: 'USP' 
+      fill_in 'Procurar projeto', with: 'USP'
       click_on 'Procurar projeto'
 
       expect(page).to have_link 'Artes impressas para palestra'
@@ -93,9 +93,11 @@ describe 'Freelancer logs' do
       webdev = create(:freelancer_expertise, title: 'Desenvolvedor web')
       create(:freelancer_expertise, title: 'UX')
       spongebob = create(:freelancer, email: 'spongebob@hub.com', password: '123123',
-                        full_name: 'Sponge Bob SquarePants', social_name: 'Sponge Bob',
-                        birth_date: '20/04/1990', degree: 'Engenharia', description: 'Preciso de um freela',
-                        experience: 'Já trabalhei em muitos projetos', freelancer_expertise: webdev)
+                                      full_name: 'Sponge Bob SquarePants', social_name: 'Sponge Bob',
+                                      birth_date: '20/04/1990', degree: 'Engenharia',
+                                      description: 'Preciso de um freela',
+                                      experience: 'Já trabalhei em muitos projetos',
+                                      freelancer_expertise: webdev)
 
       login_as spongebob, scope: :freelancer
       visit root_path

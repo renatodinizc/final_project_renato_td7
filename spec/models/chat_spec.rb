@@ -9,7 +9,7 @@ describe Chat do
 
       expect(chat.errors.full_messages_for(:commenter)).to include 'Remetente não pode ficar em branco'
     end
-    
+
     it 'the message attribute successfully' do
       chat = Chat.new
 
@@ -17,6 +17,5 @@ describe Chat do
 
       expect(chat.errors.full_messages_for(:message)).to include 'Mensagem não pode ficar em branco'
     end
-    
   end
 end

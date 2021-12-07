@@ -1,14 +1,13 @@
-class ApplicationController < ActionController::Base 
-
-  def get_search_input
+class ApplicationController < ActionController::Base
+  def search_strip
     params[:search].strip
   end
 
   def authenticate_any!
     if contractor_signed_in?
-        true
+      true
     else
-        authenticate_freelancer!
+      authenticate_freelancer!
     end
   end
 
@@ -16,13 +15,11 @@ class ApplicationController < ActionController::Base
   # de login caso não esteja com cadastro completo. É necessário rodar um F5
   def after_sign_in_path_for(resource)
     return root_path if resource.is_a? Contractor
+
     if resource.valid?(:profile_completion)
       root_path
     else
       edit_freelancer_path resource
     end
   end
-
-
-
 end

@@ -25,10 +25,10 @@ describe 'Freelancer makes proposal to project' do
 
   it 'and access it through My projects menu' do
     proposal1 = create(:proposal)
-    proposal2 = create(:proposal, freelancer: proposal1.freelancer)
-    proposal3 = create(:proposal)
+    create(:proposal, freelancer: proposal1.freelancer)
+    create(:proposal)
 
-    login_as proposal1.freelancer, scope: :freelancer                                 
+    login_as proposal1.freelancer, scope: :freelancer
     visit root_path
     click_on 'Meus projetos'
 

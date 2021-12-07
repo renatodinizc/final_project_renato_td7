@@ -14,11 +14,11 @@ describe 'Contractor fails to' do
                     contractor: spongebob,
                     freelancer_expertise: webdev)
 
-      login_as foo, scope: :contractor
-      visit root_path
-      click_on 'Website para grupo de estudos'
+    login_as foo, scope: :contractor
+    visit root_path
+    click_on 'Website para grupo de estudos'
 
-      expect(page).not_to have_link 'Editar informações do projeto'
+    expect(page).not_to have_link 'Editar informações do projeto'
   end
   it 'delete projects from others' do
     foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
@@ -33,11 +33,10 @@ describe 'Contractor fails to' do
                     contractor: spongebob,
                     freelancer_expertise: webdev)
 
-      login_as foo, scope: :contractor
-      visit root_path
-      click_on 'Website para grupo de estudos'
+    login_as foo, scope: :contractor
+    visit root_path
+    click_on 'Website para grupo de estudos'
 
-      expect(page).not_to have_link 'Remover projeto'
+    expect(page).not_to have_link 'Remover projeto'
   end
-
 end

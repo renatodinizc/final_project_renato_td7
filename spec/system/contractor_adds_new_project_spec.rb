@@ -2,11 +2,10 @@ require 'rails_helper'
 
 describe 'Contractor adds new project to website' do
   it 'successfully' do
-    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
-    FreelancerExpertise.create!(title: 'Desenvolvedor web')
-    FreelancerExpertise.create!(title: 'Designer')
-    FreelancerExpertise.create!(title: 'UX')
-
+    foo = create(:contractor, email: 'foo@bar.com', password: '123123')
+    create(:freelancer_expertise, title: 'Desenvolvedor web')
+    create(:freelancer_expertise, title: 'Designer')
+    create(:freelancer_expertise, title: 'UX')
 
     login_as foo, scope: :contractor
     visit root_path
@@ -27,10 +26,10 @@ describe 'Contractor adds new project to website' do
     expect(page).to have_content('Data limite para envio de propostas: 10/12/2021')
     expect(page).to have_content('Trabalho remoto: sim')
     expect(page).to have_content('Área de atuação requerida: Desenvolvedor web')
-
   end
+
   it 'and cannot left it with blank fields' do
-    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+    foo = create(:contractor, email: 'foo@bar.com', password: '123123')
 
     login_as foo, scope: :contractor
     visit root_path
@@ -43,9 +42,9 @@ describe 'Contractor adds new project to website' do
     expect(page).to have_content 'Máximo preço por hora não pode ficar em branco'
     expect(page).to have_content 'Prazo de submissão final não pode ficar em branco'
   end
-  
+
   it 'via own profile' do
-    foo = Contractor.create!(email: 'foo@bar.com', password: '123123')
+    foo = create(:contractor, email: 'foo@bar.com', password: '123123')
 
     login_as foo, scope: :contractor
     visit root_path
@@ -56,4 +55,3 @@ describe 'Contractor adds new project to website' do
     expect(page).not_to have_link 'Cadastrar novo projeto'
   end
 end
-    

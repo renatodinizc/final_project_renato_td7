@@ -1,0 +1,19 @@
+require:
+  - rubocop
+AllCops:
+ TargetRubyVersion: 3.0.2
+ Exclude:
+   - 'bin/**/*'
+   - 'vendor/**/*'
+   - 'db/**/*'
+   - 'config/**/*'
+   - 'script/**/*'
+   - 'spec/rails_helper.rb'
+Documentation:
+ Enabled: false
+Style/FrozenStringLiteralComment:
+ Enabled: false
+Metrics/BlockLength:
+ ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let', 'it']
+Metrics/LineLength:
+  Max: 120

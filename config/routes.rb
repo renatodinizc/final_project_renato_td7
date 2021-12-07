@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   devise_for :freelancers
   devise_for :contractors
 
- 
+  namespace :api do
+    namespace :v1 do
+      resources :projects, only: %i[index show]
+    end
+  end
 
   resources :contractors, only: [:show]
   resources :freelancers, only: [:show, :edit, :update] do

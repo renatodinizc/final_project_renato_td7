@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  before_action :authenticate_any!, only: [:new, :create]
+  before_action :authenticate_any!, only: %i[new create]
 
   def new
     @feedback = Feedback.new

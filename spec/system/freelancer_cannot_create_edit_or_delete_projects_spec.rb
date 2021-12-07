@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-describe "Freelancer cannot" do
+describe 'Freelancer cannot' do
   it 'create project successfuly' do
     foo = Freelancer.create!(email: 'foo@bar.com', password: '123123')
-    
+
     login_as foo, scope: :freelancer
     visit root_path
-    
+
     expect(page).not_to have_link 'Cadastrar novo projeto'
   end
-  
+
   it 'edit project successfuly' do
     foo = Freelancer.create!(email: 'foo@bar.com', password: '123123')
     webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
