@@ -68,9 +68,4 @@ describe 'Contractor logs' do
       expect(page).not_to have_content('Plataforma de desafios de programação')
     end
   end
-
-  context 'out of platform' do
-    it 'successfuly' do
-    end
-  end
 end

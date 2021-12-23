@@ -1,25 +1,6 @@
 require 'rails_helper'
 
 describe 'Contractor sees all proposals to project' do
-  # EXCLUIR DEPOISSS
-
-  it 'with FactoryBot sucessfully' do
-    proposal = create(:proposal)
-
-    login_as proposal.contractor, scope: :contractor
-    visit root_path
-    click_on 'Ver meu perfil'
-    click_on 'Project 1'
-
-    expect(page).to have_content 'Propostas recebidas:'
-    expect(page).to have_link 'Freelancer 1'
-    expect(page).to have_content 'Descrição do profissional: Much description'
-    expect(page).to have_content 'Justificativa para o projeto: Much justification'
-    expect(page).to have_content 'Valor/hora: R$ 42,00'
-    expect(page).to have_content 'Carga horária semanal: 9 horas'
-    expect(page).to have_content "Conclusão do projeto em: #{I18n.l 2.months.from_now.to_date}"
-  end
-
   it 'successfully' do
     peter = Contractor.create!(email: 'peterparker@hub.com', password: '123123')
     webdev = FreelancerExpertise.create!(title: 'Desenvolvedor web')
@@ -60,16 +41,16 @@ describe 'Contractor sees all proposals to project' do
                                proposal_deadline: '10/12/2021', remote: true, contractor: peter,
                                freelancer_expertise: webdev)
     Proposal.create!(proposal_description: 'Quero muito contribuir',
-                     hourly_wage: 14, weekly_hours: 7, expected_conclusion: '20/04/2022',
+                     hourly_wage: 14, weekly_hours: 7, expected_conclusion: 1.month.from_now,
                      project: desafios, freelancer: jane, contractor: peter)
     Proposal.create!(proposal_description: 'De hamburgueres para programação é batata',
                      hourly_wage: 8, weekly_hours: 10,
-                     expected_conclusion: '19/12/2021',
+                     expected_conclusion: 2.months.from_now,
                      project: desafios, freelancer: spongebob,
                      contractor: peter)
     Proposal.create!(proposal_description: 'De caixa administrativo do Siri Cascudo para programação é batata',
                      hourly_wage: 3, weekly_hours: 20,
-                     expected_conclusion: '18/03/2022',
+                     expected_conclusion: 3.months.from_now,
                      project: website, freelancer: squidward,
                      contractor: peter)
 
@@ -83,13 +64,13 @@ describe 'Contractor sees all proposals to project' do
     expect(page).to have_content 'Justificativa para o projeto: Quero muito contribuir'
     expect(page).to have_content 'Valor/hora: R$ 14,00'
     expect(page).to have_content 'Carga horária semanal: 7 horas'
-    expect(page).to have_content 'Conclusão do projeto em: 20/04/2022'
+    expect(page).to have_content "Conclusão do projeto em: #{I18n.l 1.months.from_now.to_date}"
     expect(page).to have_link 'Sponge Bob'
     expect(page).to have_content 'Descrição do profissional: Já trabalhei em águas internacionais'
     expect(page).to have_content 'Justificativa para o projeto: De hamburgueres para programação é batata'
     expect(page).to have_content 'Valor/hora: R$ 8,00'
     expect(page).to have_content 'Carga horária semanal: 10 horas'
-    expect(page).to have_content 'Conclusão do projeto em: 19/12/2021'
+    expect(page).to have_content "Conclusão do projeto em: #{I18n.l 2.months.from_now.to_date}"
     expect(page).not_to have_link 'Squidward'
     expect(page).not_to have_content 'Descrição do profissional: Gosto de organização e pontualidade nos meus trabalhos'
   end

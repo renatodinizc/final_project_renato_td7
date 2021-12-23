@@ -13,11 +13,10 @@ class ProposalsController < ApplicationController
                                                               :hourly_wage, :weekly_hours,
                                                               :expected_conclusion))
     set_proposal_data
-    return redirect_to project_path @proposal.project if @proposal.save
-
-    @project = @proposal.project
-    @proposals = Proposal.where(project: @project)
-    render 'projects/show'
+    if @proposal.save
+      ProposalMailer.with(proposal: @proposal).notify_new_proposal.deliver_now
+      redirect_to project_path @proposal.project
+    end
   end
 
   def archive

@@ -1,6 +1,102 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/freelancer.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          191,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/contractor.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/models/proposal.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          63,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          63,
+          null,
+          6,
+          null,
+          null,
+          1,
+          63,
+          63,
+          1,
+          null,
+          62,
+          5,
+          null,
+          null,
+          null,
+          1,
+          63,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/renato/RailsProjects/freelancing_hub/app/models/chat.rb": {
         "lines": [
           1,
@@ -46,53 +142,7 @@
           1,
           null,
           1,
-          91,
-          null,
-          null
-        ]
-      },
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/proposal.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          62,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          62,
-          null,
-          6,
-          null,
-          null,
-          1,
-          62,
-          62,
-          1,
-          null,
-          61,
-          5,
-          null,
-          null,
-          null,
-          1,
-          62,
-          null,
-          1,
+          94,
           null,
           null
         ]
@@ -106,10 +156,10 @@
           1,
           null,
           1,
-          46,
-          46,
-          46,
-          46,
+          47,
+          47,
+          47,
+          47,
           null,
           null,
           1,
@@ -230,15 +280,14 @@
           null,
           null,
           1,
-          1,
+          2,
           null,
           null,
-          1,
-          1,
+          2,
+          2,
+          2,
+          2,
           null,
-          0,
-          0,
-          0,
           null,
           null,
           1,
@@ -307,9 +356,9 @@
           null,
           null,
           1,
-          1,
-          1,
-          1,
+          2,
+          2,
+          2,
           null,
           null,
           1,
@@ -405,18 +454,41 @@
           null,
           null,
           1,
-          2,
+          3,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/renato/RailsProjects/freelancing_hub/app/controllers/api/v1/api_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
           1,
           null,
           1,
           null,
+          1,
+          1,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          1,
+          1,
           null,
           null
         ]
@@ -434,8 +506,8 @@
         "lines": [
           1,
           1,
-          10,
-          10,
+          9,
+          9,
           null,
           null
         ]
@@ -465,64 +537,8 @@
           null,
           null
         ]
-      },
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/application_record.rb": {
-        "lines": [
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/contractor.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/renato/RailsProjects/freelancing_hub/app/models/freelancer.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
       }
     },
-    "timestamp": 1638913042
+    "timestamp": 1640285752
   }
 }
